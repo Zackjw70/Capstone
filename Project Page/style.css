@@ -7,3 +7,9 @@ iframe{
     height: 700px;
     margin-left: 25%;
 }
+img{
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+    border: 2px solid black;
+}
