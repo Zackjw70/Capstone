@@ -5,9 +5,31 @@ if (isset($_POST['login'])){
     $username = filter_input(INPUT_POST, "uName");
     $password = filter_input(INPUT_POST, "uPass");
 
-    $user = login($username, $password);
+    $user = login($username, crypt($password,'$5$'));
 
-    var_dump($user);
+    if(count($user) > 0)
+    {
+        session_start();
+        $_SESSION['user']=$user['username'];
+        $_SESSION['perm']=$user['perm'];
+
+        if($_SESSION['perm'] == 'admin'){
+
+        }
+        if($_SESSION['perm'] == 'owner'){
+
+        }
+        else{
+            
+        }
+        
+
+        header('Location: home.php');
+    }
+    else{
+        session_unset();
+    }
+
 }else{
     $username = '';
     $password = '';

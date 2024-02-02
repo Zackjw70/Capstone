@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    include __DIR__ . '/DBModel/modelLink.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +12,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link-Up and Learn</title>
-    <link href="XXX.css?v=1.0" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-
+    <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
+    <style>
+        h1{
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            height: 50px;
+            color:#B93836;
+}
+    </style>
     
 </head>
 <body>
@@ -22,14 +35,23 @@
                 </a>
             </div>
             <div class="col-10 text-center">
-                <h1 class="titleLink">Link up and Learn</h1>
+                <h1 id="bootstrap-overrides">Link up and Learn</h1>
             </div>
             <div class="col-1 text-center">
+                <?php if(isset($_SESSION['user'])): ?>
+                    <h3><?= $_SESSION['user']; ?></h3>
+                    <a href="Logout.php">
+                <button class="custom-btn btn-14">
+                    Logout
+                </button>
+                </a>
+                <?php else: ?>
                 <a href="Login.php">
                 <button class="custom-btn btn-14">
                     Login
                 </button>
                 </a>
+                <?php endif; ?>
             </div>
         </div>
         
