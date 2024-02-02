@@ -74,3 +74,17 @@ function getLoginAttempts(){
     return ($results);
 }
 
+function login($user,$pass){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM users WHERE username = :user ANd logpassword = :pass");
+    $stmt->bindValue(':user', $user);
+    $stmt->bindValue(':pass', $pass);
+
+    if ($stmt->execute()&& $stmt->rowCount() > 0)
+            {$results = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+        }
+    return ($results);
+}
+
