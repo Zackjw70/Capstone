@@ -5,7 +5,7 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Raleway&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 
 h1{
@@ -18,7 +18,7 @@ h1{
 
 }
 
-.custom-btn {
+.custom-btn, input[type=submit]{
     width: 130px;
     height: 40px;
     color: #fff;
@@ -37,12 +37,12 @@ h1{
     outline: none;
 }
 
-.btn-14 {
+.btn-14, input[type=submit]{
     background: rgb(255,151,0);
     border: none;
     z-index: 1;
   }
-  .btn-14:after {
+  .btn-14:after, input[type=submit]:after{
     position: absolute;
     content: "";
     width: 100%;
@@ -58,15 +58,15 @@ h1{
     4px 4px 5px 0px rgba(0,0,0,.1);
     transition: all 0.3s ease;
   }
-  .btn-14:hover {
+  .btn-14:hover, input[type=submit]:hover{
     color: #000;
   }
-  .btn-14:hover:after {
+  .btn-14:hover:after, input[type=submit]:hover:after {
     top: auto;
     bottom: 0;
     height: 100%;
   }
-  .btn-14:active {
+  .btn-14:active, input[type=submit]:active{
     top: 2px;
   }
 

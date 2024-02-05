@@ -25,32 +25,14 @@
             font-style: normal;
             height: 50px;
             color:#B93836;
-            font-size:60px;
-            margin-left:auto;margin-right:auto;
-            margin-top:50px;
-            
-        }
-        .loginbtn{
-            margin-top:80px;
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-
-        }
-        .headerrow{
-            background-color:#EABC64;
-        }
-        .logobtn{
-            opacity: 50%;
-        }
-
+}
     </style>
     
 </head>
 <body>
     <div>
-        <div class="row headerrow" style="width:101%;">
-            <div class="col-2 text-start">
+        <div class="row" style="width:100%;">
+            <div class="col-1 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
                 </a>
@@ -58,11 +40,11 @@
             <div class="col-8 text-center">
                 <h1>Link up and Learn</h1>
             </div>
-            <div class="col-2 text-center">
+            <div class="col-1 text-center">
                 <?php if(isset($_SESSION['user'])): ?>
-                    <h3><?= $_SESSION['user']; ?></h3>
+                    <h3 class="username"><?= $_SESSION['user']; ?></h3>
                     <a href="Logout.php">
-                <button class="custom-btn btn-14">
+                <button class="custom-btn btn-14 logoutbtn">
                     Logout
                 </button>
                 </a>
@@ -75,6 +57,14 @@
                 <?php endif; ?>
             </div>
         </div>
+        <div>
+
+        </div>
+        <footer class="card-footer footextra">
+            <p>Name:</p>
+            <p>Phone:</p>
+            <p>Email:</p>
+        </footer>
         
         
         
