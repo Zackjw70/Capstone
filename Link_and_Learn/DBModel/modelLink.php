@@ -52,6 +52,18 @@ function addUsers ($username, $logpassword, $perm){
     return ($result);
 }
 
+function OneUser($user){
+    global $db;
+
+    $result = [];
+    $stmt = $db->prepare("SELECT * FROM users WHERE username=:un");
+    $stmt->bindvalue(':un', $user);
+    if ($stmt->execute() && $stmt ->rowCount() > 0){
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return ($result);
+}
+
 
 //All functions for ChangeLog Table
 
