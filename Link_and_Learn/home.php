@@ -16,44 +16,112 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
     <style>
+        body{
+            background-color:#EAD064;
+        }
         h1{
             font-family: "Architects Daughter", cursive;
             font-weight: 400;
             font-style: normal;
             height: 50px;
             color:#B93836;
-}
+            font-size:60px;
+            margin-left:auto;margin-right:auto;
+            margin-top:50px;
+            
+        }
+        .footextra{
+            background-color:#EABC64;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding-top:10px;
+            font-size: 20px;
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+
+        }
+        .loginbtn{
+            margin-top:80px;
+            width: 200px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+
+        }
+        .logoutbtn{
+            margin-top:-20px;
+            width: 200px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+        }
+        .username{
+            margin-top:20px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+            display:flex;
+            justify-content:center;
+        }
+        .headerrow{
+            background-color:#EABC64;
+        }
+        .logobtn{
+            opacity: 50%;
+        }
+        @media only screen and (max-width: 1000px) {
+            h1{
+                margin-left: 200px;
+                font-size:45px;   
+            }
+            .logbtns{
+                display:block;
+                width: 100%;
+                height: 150px;
+                margin-left: 23%;
+            }
+        }
+
     </style>
     
 </head>
 <body>
     <div>
-        <div class="row" style="width:100%;">
-            <div class="col-1 text-start">
+        <div class="row headerrow" style="width:105%;">
+            <div class="col-2 text-start">
                 <a href="home.php">
-                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home">
+                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
                 </a>
             </div>
-            <div class="col-10 text-center">
-                <h1 id="bootstrap-overrides">Link up and Learn</h1>
+            <div class="col-8 text-center">
+                <h1>Link up and Learn</h1>
             </div>
-            <div class="col-1 text-center">
+            <div class="col-2 text-center logbtns">
                 <?php if(isset($_SESSION['user'])): ?>
-                    <h3><?= $_SESSION['user']; ?></h3>
+                    <h3 class="username"><?= $_SESSION['user']; ?></h3>
                     <a href="Logout.php">
-                <button class="custom-btn btn-14">
+                <button class="custom-btn btn-14 logoutbtn">
                     Logout
                 </button>
                 </a>
                 <?php else: ?>
                 <a href="Login.php">
-                <button class="custom-btn btn-14">
+                <button class="custom-btn btn-14 loginbtn">
                     Login
                 </button>
                 </a>
                 <?php endif; ?>
             </div>
         </div>
+        <div>
+
+        </div>
+        <footer class="card-footer footextra">
+            <p>Name:</p>
+            <p>Phone:</p>
+            <p>Email:</p>
+        </footer>
         
         
         
