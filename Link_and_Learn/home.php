@@ -25,14 +25,71 @@
             font-style: normal;
             height: 50px;
             color:#B93836;
-}
+            font-size:60px;
+            margin-left:auto;margin-right:auto;
+            margin-top:50px;
+            
+        }
+        .footextra{
+            background-color:#EABC64;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding-top:10px;
+            font-size: 20px;
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+
+        }
+        .loginbtn{
+            margin-top:80px;
+            width: 200px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+
+        }
+        .logoutbtn{
+            margin-top:-20px;
+            width: 200px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+        }
+        .username{
+            margin-top:20px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+            display:flex;
+            justify-content:center;
+        }
+        .headerrow{
+            background-color:#EABC64;
+        }
+        .logobtn{
+            opacity: 50%;
+        }
+        @media only screen and (max-width: 1000px) {
+            h1{
+                margin-left: 200px;
+                font-size:45px;   
+            }
+            .logbtns{
+                display:block;
+                width: 100%;
+                height: 150px;
+                margin-left: 23%;
+            }
+        }
+
     </style>
     
 </head>
 <body>
     <div>
-        <div class="row" style="width:100%;">
-            <div class="col-1 text-start">
+        <div class="row headerrow" style="width:105%;">
+            <div class="col-2 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
                 </a>
@@ -40,7 +97,7 @@
             <div class="col-8 text-center">
                 <h1>Link up and Learn</h1>
             </div>
-            <div class="col-1 text-center">
+            <div class="col-2 text-center logbtns">
                 <?php if(isset($_SESSION['user'])): ?>
                     <h3 class="username"><?= $_SESSION['user']; ?></h3>
                     <a href="Logout.php">
