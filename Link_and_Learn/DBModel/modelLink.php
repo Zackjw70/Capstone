@@ -64,6 +64,39 @@ function OneUser($user){
     return ($result);
 }
 
+function UpdateUser($username, $logpassword, $perm){
+    global $db;
+
+    $results = "";
+    $stmt = $db->prepare("UPDATE users SET username = :un, logpassword = :lp, perm = :pm");
+
+    $binds = array(
+        ":un" => $username,
+        ":lp" => $logpassword,
+        ":pm" => $perm
+    );
+
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Data Updated";
+    }
+    return($results);
+    
+}
+
+function DeleteUser($user){
+    global $db;
+
+    $results = "Data was not Deleted";
+    $stmt = $db->prepare("DELETE FROM users WHERE username=:un");
+
+    $stmt->bindvalue(':un', $user);
+    if ($stmt->execute() && $stmt->rowCount() > 0){
+        $results = "Data Deleted";
+    }
+
+    return($results);
+}
+
 
 //All functions for ChangeLog Table
 

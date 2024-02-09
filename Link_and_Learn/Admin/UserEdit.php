@@ -19,6 +19,11 @@
         $error = "";
         $changepass = "hidden";
         $buttonchange = "button";
+        $inputname = "Add_User";
+        $username = "";
+        $logpassword = "";
+        $perm = "";
+        
 
         if(isset($_GET['action'])){
             $action = filter_input(INPUT_GET, 'action');
@@ -29,12 +34,83 @@
                 $username = $user["username"];
                 $logpassword = $user["logpassword"];
                 $perm = $user["perm"];
+                $inputname = "Update_User";
+
+                if ($perm == '2'){
+                    $perm = "Admin";
+                }
+
+                if ($perm == '1'){
+                    $perm = "Owner";
+                }
+
+                if ($perm == '0'){
+                    $perm = "User";
+                }
+                
             }
+
+            if($action == "Delete"){
+                $user = OneUser($userpull);
+                $username = $user["username"];
+                $logpassword = $user["logpassword"];
+                $perm = $user["perm"];
+                $inputname = "Delete_User";
+
+                if ($perm == '2'){
+                    $perm = "Admin";
+                }
+
+                if ($perm == '1'){
+                    $perm = "Owner";
+                }
+
+                if ($perm == '0'){
+                    $perm = "User";
+                }
+                
+            }
+
             else{
             $username = "";
             $logpassword = "";
             $perm = "";
+            
             }
+        }
+
+        if(isset($_POST['Update_User'])){
+            $username = filter_input(INPUT_POST, 'username');
+            if(filter_input(INPUT_POST, 'logpassword') == ""){
+                $logpassword = filter_input(INPUT_POST, 'CurrentPassword');
+            }
+            else{
+                $logpassword = filter_input(INPUT_POST, 'logpassword');
+            }
+            
+            $perm = filter_input(INPUT_POST, 'perm');
+
+            if ($error == ""){
+                UpdateUser($username, $logpassword, $perm);
+                header('Location: User.php');
+            }
+        }
+
+        elseif(isset($_POST['Add_User'])){
+            $username = filter_input(INPUT_POST, 'username');
+            $logpassword = filter_input(INPUT_POST, 'logpassword');
+            $perm = filter_input(INPUT_POST, 'perm');
+
+            if ($error == ""){
+                addUsers($username, $logpassword, $perm);
+                header('Location: user.php');
+            }
+        }
+
+        elseif(isset($_POST['Delete_User'])){
+            $username = filter_input(INPUT_POST, 'username');
+            DeleteUser($username);
+            header('Location: user.php');
         }
 
     ?>
@@ -42,28 +118,33 @@
     <h2>Edit User</h2>
 
     
-    <form name="account" method="post" action="edit_user">
+    <form name="account" method="post" action="UserEdit.php">
         <div class="wrapper">
             <form method="post" name="editaccont">
                 <labl>Username: </label>
-                <input type="text" name="username" value="<?= $username;?>" />
+                <input type="text" name="username" value="<?= $username;?>" readonly />
                 <br>
                 <labl>Password: </label>
-                <input type="<?=$buttonchange?>" value="Change Password" onclick="inputchange()">
+                <input id="passchangebutton" type="button" value="ChangePassword" onclick="inputchange()">
 
-                <input type="<?=$changepass?>" name="logpassword" value="" />
+                <input id="currentpassword" type="hidden" value="CurrentPassword" value="<?=$logpassword?>">
+
+                <input id="passchangetext" type="hidden" name="logpassword" onclick="inputchange()" value="" />
                 <br>
                 <labl>Role: </label>
-                <select id="perm" name="perm" value="<?= $perm;?>">
-                    <option value="admin">Admin</option>
-                    <option value="owner">Owner</option>
-                    <option value="user">User</option>
+                <select id="perm" name="perm" value="<?=$perm?>">
+                    <option value="2">Admin</option>
+                    <option value="1">Owner</option>
+                    <option value="0">User</option>
                 </select>
                 <div>
                     &nbsp;
                 </div>
                 <div>
-                    <input type="submit" name="Update_User" value="Update_User" />
+                    <input type="submit" name="<?=$inputname?>" value="<?=$inputname?>" />
+                </div>
+                <div>
+                    &nbsp;
                 </div>
             </form>
         </div>
@@ -78,8 +159,8 @@
 </body>
 <script>
    function inputchange()  {
-    <?php$changepass = "text";
-    $buttonchange = "hidden";?>
+    document.getElementById("passchangebutton").type = "hidden";
+    document.getElementById("passchangetext").type = "text";
    }
 </script>
 </html>
