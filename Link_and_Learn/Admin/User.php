@@ -17,6 +17,8 @@
 
 <body>
 
+    <a href="UserEdit.php">Add A User</a>
+
 
     <div class="container">
         <h3>Admins</h3>
@@ -30,11 +32,11 @@
             </thead>
             <tbody>
             <?php foreach ($users as $u):
-                if ($u['perm'] == 'admin'){ ?>
+                if ($u['perm'] == '2'){ ?>
                     <tr>
                         <td><a href="UserEdit.php?action=Update&username=<?=$u['username'];?>">Edit</a></td>
                         <td><?= $u['username']; ?></td>
-                        <td>Delete</td>
+                        <td><a href="UserEdit.php?action=Delete&username=<?=$u['username'];?>">Delete</a></td>
                     </tr>
                 <?php 
                 }
@@ -48,11 +50,11 @@
             </thead>
             <tbody>
             <?php foreach ($users as $u):
-                if ($u['perm'] == 'owner'){ ?>
+                if ($u['perm'] == '1'){ ?>
                     <tr>
                         <td><a href="UserEdit.php?action=Update&username=<?=$u['username'];?>">Edit</a></td>
                         <td><?= $u['username']; ?></td>
-                        <td>Delete</td>
+                        <td><a href="UserEdit.php?action=Delete&username=<?=$u['username'];?>">Delete</a></td>
                     </tr>
                 <?php 
                 }
@@ -66,11 +68,11 @@
             </thead>
             <tbody>
             <?php foreach ($users as $u):
-                if ($u['perm'] == 'user'){ ?>
+                if ($u['perm'] == '0'){ ?>
                     <tr>
                         <td><a href="UserEdit.php?action=Update&username=<?=$u['username'];?>">Edit</a></td>
                         <td><?= $u['username']; ?></td>
-                        <td>Delete</td>
+                        <td><a href="UserEdit.php?action=Delete&username=<?=$u['username'];?>">Delete</a></td>
                     </tr>
                 <?php 
                 }
