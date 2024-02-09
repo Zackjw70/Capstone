@@ -1,34 +1,44 @@
 <?php
 include __DIR__ . '/DBModel/modelLink.php';
 
+$results = '';
+
 if (isset($_POST['login'])){
-    $username = filter_input(INPUT_POST, "uName");
-    $password = filter_input(INPUT_POST, "uPass");
+    $errorcnt = 0;
+    if(empty($username = filter_input(INPUT_POST, "uName"))){
+        $errorcnt += 1;
+    }
+    if(empty($password = filter_input(INPUT_POST, "uPass"))){
+        $errorcnt += 1;
+    }
+    if($errorcnt == 0){
+        $user = login($username, crypt($password,'$5$'));
 
-    $user = login($username, crypt($password,'$5$'));
+        if(count($user) > 0)
+        {
+            session_start();
+            $_SESSION['user']=$user['username'];
+            $_SESSION['perm']=$user['perm'];
 
-    if(count($user) > 0)
-    {
-        session_start();
-        $_SESSION['user']=$user['username'];
-        $_SESSION['perm']=$user['perm'];
+            if($_SESSION['perm'] == 'admin'){
 
-        if($_SESSION['perm'] == 'admin'){
+            }
+            if($_SESSION['perm'] == 'owner'){
 
-        }
-        if($_SESSION['perm'] == 'owner'){
+            }
+            else{
+                
+            }
+            
 
+            header('Location: home.php');
         }
         else{
-            
+            session_unset();
+            $results = "Invalid Login!";
         }
-        
-
-        header('Location: home.php');
     }
-    else{
-        session_unset();
-    }
+    
 
 }else{
     $username = '';
@@ -138,13 +148,17 @@ if (isset($_POST['login'])){
         .newAcc{
             margin-top: 30px;
         }
+        .errors{
+            color: #F81D1D;
+            margin-top: 20px;
+        }
 
     </style>
     
 </head>
 <body>
     <div>
-        <div class="row headerrow" style="width:105%;">
+        <div class="row headerrow" style="width:100%;">
             <div class="col-2 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
@@ -193,6 +207,15 @@ if (isset($_POST['login'])){
                             </tr>
                         </table>
                         
+                    </div>
+                </div>
+                
+                <div class="row text-center">
+                    <div class="col-4">
+
+                    </div>
+                    <div class="col-4 errors">
+                        <p><?= $results; ?></p>
                     </div>
                 </div>
                 <div class="row text-center">

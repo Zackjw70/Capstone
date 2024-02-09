@@ -50,19 +50,18 @@
 
         }
         .logoutbtn{
-            margin-top:-20px;
             width: 200px;
             height: 60px;
             font-size:26px;
-            margin-right: 50%;
         }
         .username{
             margin-top:20px;
-            height: 60px;
+            max-height: 30px;
             font-size:26px;
             margin-right: 50%;
-            display:flex;
-            justify-content:center;
+            width:100%;
+            overflow: hidden;
+            
         }
         .headerrow{
             background-color:#EABC64;
@@ -79,7 +78,11 @@
                 display:block;
                 width: 100%;
                 height: 150px;
-                margin-left: 23%;
+            }
+            .username{
+                display:block;
+                margin-bottom:30px;
+                width: 100%;
             }
         }
 
@@ -88,7 +91,7 @@
 </head>
 <body>
     <div>
-        <div class="row headerrow" style="width:105%;">
+        <div class="row headerrow" style="width:100.5%;">
             <div class="col-2 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">

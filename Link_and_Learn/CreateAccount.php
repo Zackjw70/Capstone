@@ -5,28 +5,45 @@ $results = '';
 $uNameError = '';
 $uPassError = '';
 $rePassError = '';
+$userResults = '';
+$errorcnt = 0;
 
 if (isset($_POST['login'])){
+    
+    $errorcnt = 0;
     if (empty($username = filter_input(INPUT_POST, "uName"))){
         $uNameError = "*";
+        $errorcnt += 1;
     }
     if (empty($password = filter_input(INPUT_POST, "uPass"))){
         $uPassError = "*";
+        $errorcnt += 1;
     }
     if (empty($pass2 = filter_input(INPUT_POST, "rePass", ))){
         $rePassError = "*";
+        $errorcnt += 1;
     }
     
-    
-    
-
-    $user = login($username, crypt($password,'$5$'));
     if (crypt($password, '$5$') == crypt($pass2, '$5$')){
         $results = '';
+        if(!empty($currentUser = OneUser($username))){
+            $userResults = "User already exists!";
+            $errorcnt += 1;
+            
+        }
+        elseif($errorcnt == 0){
+            addUsers($username,crypt($password, '$5$'), 0);
+            header("Location: Login.php");
+        }
+        else{
+            $results = "Must fill in indicated fields!";
+        }
+
+
 
     }
     else{
-        $results = "Your passwords Must match";
+        $results = "Your passwords Must match!";
     }
 
 
@@ -51,6 +68,7 @@ if (isset($_POST['login'])){
     <style>
         body{
             background-color:#EAD064;
+            width:101%;
         }
         h1{
             font-family: "Architects Daughter", cursive;
@@ -149,7 +167,7 @@ if (isset($_POST['login'])){
 </head>
 <body>
     <div>
-        <div class="row headerrow" style="width:105%;">
+        <div class="row headerrow" style="width:101%;">
             <div class="col-2 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
@@ -167,7 +185,7 @@ if (isset($_POST['login'])){
 
                 </div>
                 <div class="col-4 text-center">
-                    <h2>Login</h2>
+                    <h2>Create Account</h2>
                 </div>
             </div>
             <form method="POST">
@@ -219,6 +237,7 @@ if (isset($_POST['login'])){
                     </div>
                     <div class="col-4 errors">
                         <p> <?php echo $results; ?></p>
+                        <p> <?php echo $userResults; ?></p>
                     </div>
                 </div>
                 <div class="row text-center">
