@@ -23,18 +23,23 @@
         $username = "";
         $logpassword = "";
         $perm = "";
+        $readonly = "";
         
 
         if(isset($_GET['action'])){
             $action = filter_input(INPUT_GET, 'action');
             $userpull = filter_input(INPUT_GET, 'username');
+            
+
 
             if($action == "Update"){
+                $readonly = "readonly";
                 $user = OneUser($userpull);
                 $username = $user["username"];
                 $logpassword = $user["logpassword"];
                 $perm = $user["perm"];
                 $inputname = "Update_User";
+                
 
                 if ($perm == '2'){
                     $perm = "Admin";
@@ -51,6 +56,7 @@
             }
 
             if($action == "Delete"){
+                $readonly = "readonly";
                 $user = OneUser($userpull);
                 $username = $user["username"];
                 $logpassword = $user["logpassword"];
@@ -71,29 +77,33 @@
                 
             }
 
-            else{
-            $username = "";
-            $logpassword = "";
-            $perm = "";
-            
-            }
+
         }
 
         if(isset($_POST['Update_User'])){
             $username = filter_input(INPUT_POST, 'username');
             if(filter_input(INPUT_POST, 'logpassword') == ""){
-                $logpassword = filter_input(INPUT_POST, 'CurrentPassword');
+                $perm = filter_input(INPUT_POST, 'perm');
+                
+                if ($error == ""){
+                    NoEncryptUpdate($username, $perm);
+                    header('Location: User.php');
+                }
             }
             else{
-                $logpassword = filter_input(INPUT_POST, 'logpassword');
+                $logpassword = crypt(filter_input(INPUT_POST, 'logpassword'), '$5$');
+                $perm = filter_input(INPUT_POST, 'perm');
+
+                if ($error == ""){
+                    UpdateUser($username, $logpassword, $perm);
+                    header('Location: User.php');
+                }
+                
             }
             
-            $perm = filter_input(INPUT_POST, 'perm');
+            
 
-            if ($error == ""){
-                UpdateUser($username, $logpassword, $perm);
-                header('Location: User.php');
-            }
+            
         }
 
         elseif(isset($_POST['Add_User'])){
@@ -113,6 +123,12 @@
             header('Location: user.php');
         }
 
+        //var_dump($action);
+        //var_dump($userpull);
+        //var_dump($username);
+
+        
+
     ?>
 
     <h2>Edit User</h2>
@@ -122,20 +138,18 @@
         <div class="wrapper">
             <form method="post" name="editaccont">
                 <labl>Username: </label>
-                <input type="text" name="username" value="<?= $username;?>" readonly />
+                <input type="text" name="username" value="<?php echo $username?>" <?=$readonly?> >
                 <br>
                 <labl>Password: </label>
                 <input id="passchangebutton" type="button" value="ChangePassword" onclick="inputchange()">
 
-                <input id="currentpassword" type="hidden" value="CurrentPassword" value="<?=$logpassword?>">
-
                 <input id="passchangetext" type="hidden" name="logpassword" onclick="inputchange()" value="" />
                 <br>
                 <labl>Role: </label>
-                <select id="perm" name="perm" value="<?=$perm?>">
-                    <option value="2">Admin</option>
-                    <option value="1">Owner</option>
-                    <option value="0">User</option>
+                <select id="perm" name="perm">
+                    <option value="2" <?php if ($perm == 'Admin') echo "selected"; ?> >Admin</option>
+                    <option value="1" <?php if ($perm == 'Owner') echo "selected"; ?>>Owner</option>
+                    <option value="0" <?php if ($perm == 'User') echo "selected"; ?>>User</option>
                 </select>
                 <div>
                     &nbsp;
@@ -154,7 +168,6 @@
             <?= $error ?>
         </ul>
     </form>
-    
     
 </body>
 <script>

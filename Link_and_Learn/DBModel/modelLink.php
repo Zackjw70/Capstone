@@ -41,7 +41,7 @@ function addUsers ($username, $logpassword, $perm){
 
     $binds = array(
         ":un" => $username,
-        ":lp" => $logpassword,
+        ":lp" => crypt($logpassword, '$5$'),
         ":pm" => $perm
     );
 
@@ -68,7 +68,7 @@ function UpdateUser($username, $logpassword, $perm){
     global $db;
 
     $results = "";
-    $stmt = $db->prepare("UPDATE users SET username = :un, logpassword = :lp, perm = :pm");
+    $stmt = $db->prepare("UPDATE users SET logpassword = :lp, perm = :pm WHERE username=:un" );
 
     $binds = array(
         ":un" => $username,
@@ -79,6 +79,28 @@ function UpdateUser($username, $logpassword, $perm){
     if ($stmt->execute($binds) & $stmt->rowCount() > 0){
         $results = "Data Updated";
     }
+    
+    return($results);
+    
+}
+
+function NoEncryptUpdate($username, $perm){
+    global $db;
+
+    $results = "";
+    $stmt = $db->prepare("UPDATE users SET logpassword = logpassword, perm = :pm WHERE username=:un");
+
+    $stmt->bindValue(':un', $username);
+    $stmt->bindValue(':pm', $perm);
+    /*$binds = array(
+        ":un" => $username,
+        ":pm" => $perm
+    );*/
+
+    if ($stmt->execute() & $stmt->rowCount() > 0){
+        $results = "Data Updated";
+    }
+
     return($results);
     
 }
