@@ -162,6 +162,10 @@ if (isset($_POST['login'])){
         .row{
             max-width: 100.5%;
         }
+        .backbtn{
+            margin-top:50px;
+            margin-left: 50px;
+        }
         
 
     </style>
@@ -184,7 +188,7 @@ if (isset($_POST['login'])){
         <div>
             <div class="row">
                 <div class="col-4">
-                    
+                      
                 </div>
                 <div class="col-4 text-center">
                     <h2>Login</h2>

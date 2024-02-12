@@ -111,8 +111,9 @@
                 </button>
                 </a>
                 <?php else: ?>
+                    <h3 class="username">Guest</h3>
                 <a href="Login.php">
-                <button class="custom-btn btn-14 loginbtn">
+                <button class="custom-btn btn-14 logoutbtn" id="loginbtn">
                     Login
                 </button>
                 </a>
@@ -127,6 +128,7 @@
             <p>Phone:</p>
             <p>Email:</p>
         </footer>
+
         
         
         
