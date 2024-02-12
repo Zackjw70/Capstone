@@ -76,11 +76,12 @@ if (isset($_POST['login'])){
             background-color:#EABC64;
             position: absolute;
             bottom: 0;
-            width: 100%;
+            width: 100.5%;
             padding-top:10px;
             font-size: 20px;
             font-family: "Inter", sans-serif;
             font-weight: 400;
+            overflow:hidden;
 
         }
         label, p{
@@ -97,6 +98,8 @@ if (isset($_POST['login'])){
         }
         .headerrow{
             background-color:#EABC64;
+            width:100.5%;
+            overflow: hidden;
         }
         .logobtn{
             opacity: 50%;
@@ -152,13 +155,21 @@ if (isset($_POST['login'])){
             color: #F81D1D;
             margin-top: 20px;
         }
+        tr{
+            width: 100.5%;
+            overflow: hidden;
+        }
+        .row{
+            max-width: 100.5%;
+        }
+        
 
     </style>
     
 </head>
 <body>
     <div>
-        <div class="row headerrow" style="width:100%;">
+        <div class="row headerrow">
             <div class="col-2 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
@@ -167,13 +178,13 @@ if (isset($_POST['login'])){
             <div class="col-8 text-center">
                 <h1>Link up and Learn</h1>
             </div>
-            <div class="col-2 text-center logbtns">
+            <div class="col-2">
             </div>
         </div>
         <div>
             <div class="row">
                 <div class="col-4">
-
+                    
                 </div>
                 <div class="col-4 text-center">
                     <h2>Login</h2>
@@ -200,7 +211,7 @@ if (isset($_POST['login'])){
                                     <label for="uPass">Password:</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="uPass">
+                                    <input type="password" name="uPass">
                                 </td>
                                 
                                 
@@ -240,7 +251,7 @@ if (isset($_POST['login'])){
 
 
         </div>
-        <footer class="card-footer footextra">
+        <footer class="row footextra">
             <p>Name:</p>
             <p>Phone:</p>
             <p>Email:</p>

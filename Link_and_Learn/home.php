@@ -34,7 +34,7 @@
             background-color:#EABC64;
             position: absolute;
             bottom: 0;
-            width: 100%;
+            width: 100.5%;
             padding-top:10px;
             font-size: 20px;
             font-family: "Inter", sans-serif;
@@ -65,6 +65,8 @@
         }
         .headerrow{
             background-color:#EABC64;
+            width:100.5%;
+            overflow: hidden;
         }
         .logobtn{
             opacity: 50%;
@@ -91,7 +93,7 @@
 </head>
 <body>
     <div>
-        <div class="row headerrow" style="width:100.5%;">
+        <div class="row headerrow">
             <div class="col-2 text-start">
                 <a href="home.php">
                     <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
@@ -120,7 +122,7 @@
         <div>
 
         </div>
-        <footer class="card-footer footextra">
+        <footer class="row footextra">
             <p>Name:</p>
             <p>Phone:</p>
             <p>Email:</p>

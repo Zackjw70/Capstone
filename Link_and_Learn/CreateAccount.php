@@ -27,7 +27,7 @@ if (isset($_POST['login'])){
     if (crypt($password, '$5$') == crypt($pass2, '$5$')){
         $results = '';
         if(!empty($currentUser = OneUser($username))){
-            $userResults = "User already exists!";
+            $results = "User already exists!";
             $errorcnt += 1;
             
         }
@@ -68,7 +68,6 @@ if (isset($_POST['login'])){
     <style>
         body{
             background-color:#EAD064;
-            width:101%;
         }
         h1{
             font-family: "Architects Daughter", cursive;
@@ -86,6 +85,7 @@ if (isset($_POST['login'])){
             width: 100%;
             position: fixed;
             bottom: 0px;
+            padding-top:10px;
             margin-top: 55px;
             font-size: 20px;
             font-family: "Inter", sans-serif;
@@ -106,6 +106,7 @@ if (isset($_POST['login'])){
         }
         .headerrow{
             background-color:#EABC64;
+            
         }
         .logobtn{
             opacity: 50%;
@@ -161,6 +162,13 @@ if (isset($_POST['login'])){
             color: #F81D1D;
             margin-top: 20px;
         }
+        .row{
+            max-width: 100.5%;
+        }
+        .backbtn{
+            margin-top:50px;
+            margin-left: 50px;
+        }
 
     </style>
     
@@ -182,7 +190,8 @@ if (isset($_POST['login'])){
         <div>
             <div class="row">
                 <div class="col-4">
-
+                    <a href="Login.php"><button class="custom-btn btn-14 backbtn">
+                    Back</button></a>
                 </div>
                 <div class="col-4 text-center">
                     <h2>Create Account</h2>
@@ -237,7 +246,6 @@ if (isset($_POST['login'])){
                     </div>
                     <div class="col-4 errors">
                         <p> <?php echo $results; ?></p>
-                        <p> <?php echo $userResults; ?></p>
                     </div>
                 </div>
                 <div class="row text-center">
