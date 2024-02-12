@@ -17,7 +17,7 @@
 
 <body>
 
-    <a href="UserEdit.php">Add A User</a>
+    <a href="UserEdit.php?action=newuser">Add A User</a>
 
 
     <div class="container">
