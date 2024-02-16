@@ -2,7 +2,33 @@
     session_start();
 
     include __DIR__ . '/DBModel/modelLink.php';
+
+
+
+    $results = '';
+    $text = '';
+
+
+
+    if (isset($_POST)){
+        $text = filter_input(INPUT_POST, "textHolder");
+        $datetime = new DateTime();
+        $datetime = $datetime->format('Y\-m\-d\ h:i:s');
+        if(!empty($text)){
+            addReview($text, $datetime);
+            $results = "Review submitted!";
+            ?><script>inpi = document.querySelector(`#TinyMceTxt`)
+            inpi.value = " "
+            </script><?php
+
+        }
+    }
+    else{
+        $datetime = '';
+        $text = '';
+    }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -89,13 +115,16 @@
             }
         
         }
-        h2{
+        h2, h3{
             font-family: "Architects Daughter", cursive;
             font-weight: 400;
             font-style: normal;
             color:#B93836;
             font-size:50px;
             margin-top:50px;
+        }
+        h3{
+            font-size: 30px;
         }
         .row{
             max-width: 100.5%;
@@ -181,21 +210,42 @@
                         <textarea >
                             Leave Review Here!
                         </textarea>
+                        
+                        
+                        
                       </div>
         
 
 
         </div>
+        <div class="row text-center" style="display:none" id="hiddencheck1">
+            <div class="col-4" class="display: block">            
+            </div>
+            <div class="col-4 text-center" style="padding-top:30px;padding-bottom:30px; margin-left:auto;margin-right:auto;">
+                <input type="checkbox" name="check1" id="check1">
+                <label for="check1">I acknowledge that the image used contains only my child </label><br>
+                <input type="checkbox" name="check2" id="check2">
+                <label for="check2">I allow the use of this photo and review to be posted online </label>
+            </div>
+        </div>
         <div class="row text-center" style="display:none" id="hiddensub">
             <div class="col-4" class="display: block">            
             </div>
             <div class="col-4 text-center" style="padding-top:30px;padding-bottom:30px; margin-left:auto;margin-right:auto;">
-                <button class="custom-btn btn-14">
-                    Submit
-                </button>
+                <form method="POST" id="ReviewMCE" name="uploadForm">
+                    <input type="hidden" name="textHolder" id="TinyMceTxt">
+                    <button class="custom-btn btn-14">
+                        Submit
+                    </button>
+
+                </form>
+                
             </div>
+            
         </div>
-        
+        <div class = "row text-center">
+            <h3><?= $results;?></h3>
+        </div>
         <div>
 
         </div>
@@ -221,16 +271,39 @@
         var booten = document.querySelector(`#Reviewbtn`).addEventListener(`click`,(e) =>{
             var hidden = document.querySelector(`#hiddensub`).style.display = "block"
             var hiddenarea = document.querySelector(`#hiddenarea`).style.display = "inline"
+            var check1 = document.querySelector(`#hiddencheck1`).style.display ="inline"
             var boot = document.querySelector(`#Reviewbtn`).style.display = "none"
             
             
             
         })
         var subbtn = document.querySelector(`#hiddensub`).addEventListener(`click`, (e) =>{
-                var text = tinymce.activeEditor.getContent()
-                console.log(text)
+                let checkb1 = document.querySelector(`#check1`)
+                let checkb2 = document.querySelector(`#check2`)
+                if (checkb1.checked == true && checkb2.checked == true){
+                    var text = tinymce.activeEditor.getContent()
+                    if (text != "<p>Leave Review Here!</p>" && text != ""){
+                        console.log(text)
+                        inpi = document.querySelector(`#TinyMceTxt`)
+                        inpi.value = text
+                        form = document.querySelector(`#ReviewMCE`)
+                        console.log(form)
+                        form.submit()
+                        
+                        
+                        
+
+                        
+
+                        
+                        
+                    }
+                    
+                }
+                
                 
             })
+        
     
     
     </script>
