@@ -125,7 +125,7 @@ function DeleteUser($user){
 function getChangeLog(){
     global $db;
     $results = [];
-    $sqlstring = $db ->prepare("SELECT changeid, infoid, imageid, changetime, username, successful FROM changelog ORDER BY chagetime");
+    $sqlstring = $db ->prepare("SELECT changeid, infoid, imageid, changetime, username, successful FROM changelog ORDER BY changetime");
     if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
         $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
     }
