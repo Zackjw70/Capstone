@@ -194,6 +194,23 @@ function searchReviews($client){
     return ($results);
 }
 
+function addReview($text, $time){
+    global $db;
+    $result = "";
+    $stmt = $db->prepare("INSERT INTO reviews set review = :r, datesubmitted = :ds");
+
+    $binds = array(
+        ":r" => $text,
+        ":ds" => $time,
+    );
+
+    if ($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = 'Data Added';
+    }
+
+    return ($result);
+}
+
 //All functions for Login Attempts
 
 function getLoginAttempts(){
