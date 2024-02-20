@@ -193,6 +193,38 @@ function searchReviews($client){
 
     return ($results);
 }
+function getOneReview($review){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM reviews WHERE review = :r");
+    $stmt->bindValue(':r', $review);
+    if ($stmt -> execute() && $stmt ->rowCount() > 0){
+        $results = $stmt -> fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
+
+function getShownReviews(){
+    global $db;
+    $results = [];
+    $sqlstring = $db ->prepare("SELECT * FROM reviews WHERE shows = 0 ORDER BY datesubmitted");
+    if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
+        $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
+function getShown3(){
+    global $db;
+    $results = [];
+    $sqlstring = $db ->prepare("SELECT * FROM reviews WHERE shows = 0 ORDER BY datesubmitted DESC limit 3");
+    if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
+        $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
 
 function addReview($text, $time){
     global $db;
@@ -255,6 +287,18 @@ function searchLoginAttempts($username){
     }
 
     return ($results);
+}
+function getContent($section){
+    global $db;
+    $binds = array();
+
+    $stmt = $db->prepare("SELECT * FROM pagelayouts WHERE section = :s");
+    $stmt->bindValue(':s', $section);
+
+    if($stmt->execute() && $stmt->rowCount() > 0){
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return($results);
 }
 
 ?>
