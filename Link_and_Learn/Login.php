@@ -20,18 +20,18 @@ if (isset($_POST['login'])){
             $_SESSION['user']=$user['username'];
             $_SESSION['perm']=$user['perm'];
 
-            if($_SESSION['perm'] == 'admin'){
-
+            if($_SESSION['perm'] == 2){
+                header('location: Admin/User.php');
             }
-            if($_SESSION['perm'] == 'owner'){
-
+            elseif($_SESSION['perm'] == 1){
+                header('location: Backend/HomeEdit.php');
             }
             else{
-                
+                header('location: home.php');
             }
             
 
-            header('Location: home.php');
+            
         }
         else{
             session_unset();

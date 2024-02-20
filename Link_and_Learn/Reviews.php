@@ -3,7 +3,7 @@
 
     include __DIR__ . '/DBModel/modelLink.php';
 
-
+    $allReviews = getShownReviews();
 
     $results = '';
     $text = '';
@@ -15,11 +15,14 @@
         $datetime = new DateTime();
         $datetime = $datetime->format('Y\-m\-d\ h:i:s');
         if(!empty($text)){
-            addReview($text, $datetime);
-            $results = "Review submitted!";
-            ?><script>inpi = document.querySelector(`#TinyMceTxt`)
-            inpi.value = " "
-            </script><?php
+            $exists = getOneReview($text);
+            if ($exists = " "){
+                addReview($text, $datetime);
+                $results = "Review submitted!";
+            }
+            else{
+
+            }
 
         }
     }
@@ -27,6 +30,7 @@
         $datetime = '';
         $text = '';
     }
+
 ?>
 
 
@@ -136,6 +140,11 @@
         .hiddenitems{
             display: none;
         }
+        p{
+            line-height: 1.5;
+            font-family: "Lato";
+            font-size: 20px;
+        }
 
     </style>
     
@@ -182,7 +191,7 @@
             <div class="col-4">
                       
             </div>
-            <div class="col-4 text-center">
+            <div class="col-4 text-center logbtns">
                 <button class="custom-btn btn-14" style="display:inline;width: 300px;"  id="Reviewbtn">
                     Leave Review
                 </button>
@@ -249,7 +258,26 @@
         <div>
 
         </div>
-        <footer class="row footextra">
+        <div class="row text-center">
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+                <h2>All Reviews</h2>
+            </div>
+        </div>
+        <?php foreach ($allReviews as $a): ?>
+            <div class="row" style="margin-top:40px; margin-bottom:40px">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <?= $a['review'];?>
+                </div>
+            </div>
+            <hr>
+        <?php endforeach; ?>
+        <footer class="row footextra Layout container">
             <p>Name:</p>
             <p>Phone:</p>
             <p>Email:</p>

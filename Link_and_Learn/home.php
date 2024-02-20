@@ -2,6 +2,10 @@
     session_start();
 
     include __DIR__ . '/DBModel/modelLink.php';
+
+    $show = getShown3();
+    $desc = getContent(2);
+    $anno = getContent(1);
 ?>
 
 
@@ -32,7 +36,7 @@
         }
         .footextra{
             background-color:#EABC64;
-            position: absolute;
+            position: relative;
             bottom: 0;
             width: 100.5%;
             padding-top:10px;
@@ -87,6 +91,35 @@
                 width: 100%;
             }
         }
+        h2, h3{
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color:#B93836;
+            font-size:50px;
+            margin-top:50px;
+        }
+        h3{
+            font-size: 30px;
+        }
+        .row{
+            max-width: 100.5%;
+        }
+        textarea{
+            padding-top:30px;
+            padding-bottom:30px;
+        }
+        .hiddenitems{
+            display: none;
+        }
+        p{
+            line-height: 1.5;
+            font-family: "Lato";
+            font-size: 20px;
+        }
+        .anno{
+            font-size: 35px;
+        }
 
     </style>
     
@@ -123,6 +156,61 @@
         <div>
 
         </div>
+        <div class="row text-center" style="margin-bottom:20px;">
+            <h2>Announcments</h2>
+        </div>
+        <?php foreach ($anno as $a): ?>
+            <div class="row text-center">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <b><?=$a['text']; ?></b>  
+                </div>
+            </div>
+        <?php endforeach;?>
+        <div class="row text-center">
+            <a href=""><button class="custom-btn btn-14" style="width:300px; margin-top:20px;margin-bottom:20px;">Book an appointment</button></a>
+        </div>
+        <div class="row text-center">
+            <h2>About Terri Clayman</h2>
+        </div>
+        <?php foreach ($desc as $d): ?>
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <?=$d['text']; ?>
+                </div>
+            </div>
+        <?php endforeach;?>
+        
+        <div class="row text-center">
+            <h2>Reviews</h2>
+        </div>
+        <?php foreach ($show as $s): ?>
+            <div class="row" style="margin-top:40px; margin-bottom:40px;">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <?=$s['review'];?>
+                </div>
+            </div>
+            <hr>
+            <?php endforeach;?>
+        <div class="row text-center">
+        <a href="Reviews.php" style="margin-bottom:40px;margin-top:40px;"><button class="custom-btn btn-14" style="width:300px;">More Reviews</button></a>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row text-center">
+        <a href="home.php"><button class="custom-btn btn-14" style="width:300px; margin-bottom:80px;">Return to Top</button></a>
+        </div>
+
+
         <footer class="row footextra">
             <p>Name:</p>
             <p>Phone:</p>
