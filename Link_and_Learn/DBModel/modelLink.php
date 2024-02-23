@@ -261,7 +261,7 @@ function login($user,$pass){
     $results = [];
     $stmt = $db ->prepare("SELECT * FROM users WHERE username = :user ANd logpassword = :pass");
     $stmt->bindValue(':user', $user);
-    $stmt->bindValue(':pass', $pass);
+    $stmt->bindValue(':pass', crypt($pass,'$5$'));
 
     if ($stmt->execute()&& $stmt->rowCount() > 0)
             {$results = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -12,7 +12,7 @@ if (isset($_POST['login'])){
         $errorcnt += 1;
     }
     if($errorcnt == 0){
-        $user = login($username, crypt($password,'$5$'));
+        $user = login($username, $password);
 
         if(count($user) > 0)
         {
