@@ -1,3 +1,18 @@
+<?php
+    session_start();
+
+    include __DIR__ . '/../DBModel/modelLink.php';
+
+    $perm = $_SESSION['perm'];
+    if($perm < 1){
+        header('Location: ../home.php');
+    }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +86,7 @@
                 font-size:45px;   
             }
             .logbtns{
+                margin-top:50px;
                 display:block;
                 width: 100%;
                 height: 150px;
@@ -82,13 +98,16 @@
             }
         
         }
-        h2{
+        h2, h3{
             font-family: "Architects Daughter", cursive;
             font-weight: 400;
             font-style: normal;
             color:#B93836;
             font-size:50px;
             margin-top:50px;
+        }
+        h3{
+            font-size: 30px;
         }
         .row{
             max-width: 100.5%;
@@ -100,8 +119,21 @@
         .hiddenitems{
             display: none;
         }
-        .d-flex{
-            margin-bottom: 10px;
+        p{
+            line-height: 1.5;
+            font-family: "Lato";
+            font-size: 20px;
+        }
+        .aButtons{
+            text-decoration:none;
+            color:#B93836;
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size:30px;
+        }
+        .aButtons:hover{
+            color:black;
         }
 
     </style>
@@ -145,3 +177,8 @@
     
 </body>
 </html>
+    <?php include '../includes/backheader.php';?>
+        <div>
+
+        </div>
+                </body>

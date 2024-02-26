@@ -304,7 +304,52 @@ function getContent($section){
     if($stmt->execute() && $stmt->rowCount() > 0){
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    else{
+        $results = [];
+    }
     return($results);
+}
+function contentDelete($id){
+    global $db;
+
+    $results = "Content was NOT deleted";
+
+    $stmt = $db->prepare("DELETE FROM pagelayouts WHERE infoid=:id");
+    $stmt->bindValue(':id', $id);
+
+    if($stmt->execute() && $stmt->rowCount() > 0){
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return($results);
+}
+function getOneContent($text){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM pagelayouts WHERE contentText = :t");
+    $stmt->bindValue(':t', $text);
+    if ($stmt -> execute() && $stmt ->rowCount() > 0){
+        $results = $stmt -> fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
+function addContent($text, $section, $now){
+    global $db;
+    $result = "";
+    $stmt = $db->prepare("INSERT INTO pagelayouts set contentText = :t, lastedited = :le, section = :s");
+
+    $binds = array(
+        ":t" => $text,
+        ":le" => $now,
+        ":s" => $section,
+    );
+
+    if ($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = 'Data Added';
+    }
+
+    return ($result);
 }
 
 ?>

@@ -3,9 +3,22 @@
 
     include __DIR__ . '/DBModel/modelLink.php';
 
-    $show = getShown3();
-    $desc = getContent(2);
-    $anno = getContent(1);
+    $allReviews = getShown3();
+    
+    if (!empty($desc = getContent(2))){
+
+    }
+    else{
+        $desc = [];
+    }
+    if (!empty($anno = getContent(1))){
+
+    }
+    else{
+        $anno = [];
+    }
+    
+
 ?>
 
 
@@ -90,6 +103,8 @@
                 margin-bottom:30px;
                 width: 100%;
             }
+            .bookbtn{
+            }
         }
         h2, h3{
             font-family: "Architects Daughter", cursive;
@@ -126,51 +141,32 @@
 </head>
 <body>
     <div>
-        <div class="row headerrow">
-            <div class="col-2 text-start">
-                <a href="home.php">
-                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
-                </a>
-            </div>
-            <div class="col-8 text-center">
-                <h1>Link up and Learn</h1>
-            </div>
-            <div class="col-2 text-center logbtns">
-                <?php if(isset($_SESSION['user'])): ?>
-                    <h3 class="username"><?= $_SESSION['user']; ?></h3>
-                    <a href="Logout.php">
-                <button class="custom-btn btn-14 logoutbtn">
-                    Logout
-                </button>
-                </a>
-                <?php else: ?>
-                    <h3 class="username">Guest</h3>
-                <a href="Login.php">
-                <button class="custom-btn btn-14 logoutbtn" id="loginbtn">
-                    Login
-                </button>
-                </a>
-                <?php endif; ?>
-            </div>
-        </div>
+        <?php include 'includes/header.php';?>
         <div>
 
         </div>
         <div class="row text-center" style="margin-bottom:20px;">
-            <h2>Announcments</h2>
+            <div class="col-4"></div>
+            <div class="col-md-4"><h2>Announcments</h2></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3"><a href=""><button class="custom-btn btn-14 bookbtn" style="width:300px; margin-top:20px;margin-bottom:20px;">Book an appointment</button></a></div>
+            
         </div>
         <?php foreach ($anno as $a): ?>
-            <div class="row text-center">
+            <div class="row">
                 <div class="col-3">
 
                 </div>
-                <div class="col-6">
-                    <b><?=$a['text']; ?></b>  
+                <div class="col-6" style=" border-bottom: 1px solid black;">
+                    <b><?=$a['contentText']; ?></b>  
+                </div>
+                <div class="col-1" style=" border-bottom: 1px solid black;">
+                    <?=date("m/d/Y", strtotime($a['lastedited'])); ?>
                 </div>
             </div>
         <?php endforeach;?>
         <div class="row text-center">
-            <a href=""><button class="custom-btn btn-14" style="width:300px; margin-top:20px;margin-bottom:20px;">Book an appointment</button></a>
+            
         </div>
         <div class="row text-center">
             <h2>About Terri Clayman</h2>
@@ -181,7 +177,7 @@
 
                 </div>
                 <div class="col-6">
-                    <?=$d['text']; ?>
+                    <?=$d['contentText']; ?>
                 </div>
             </div>
         <?php endforeach;?>
@@ -189,17 +185,20 @@
         <div class="row text-center">
             <h2>Reviews</h2>
         </div>
-        <?php foreach ($show as $s): ?>
+        <?php foreach ($allReviews as $a): ?>
             <div class="row" style="margin-top:40px; margin-bottom:40px;">
                 <div class="col-3">
 
                 </div>
-                <div class="col-6">
-                    <?=$s['review'];?>
+                <div class="col-6" style=" border-bottom: 1px solid black;">
+                    <?= $a['review'];?>
+                </div>
+                <div class="col-1" style=" border-bottom: 1px solid black;">
+                    <?= date("Y-m-d", strtotime($a['datesubmitted'])); ?>
                 </div>
             </div>
-            <hr>
-            <?php endforeach;?>
+            
+        <?php endforeach; ?>
         <div class="row text-center">
         <a href="Reviews.php" style="margin-bottom:40px;margin-top:40px;"><button class="custom-btn btn-14" style="width:300px;">More Reviews</button></a>
         </div>
