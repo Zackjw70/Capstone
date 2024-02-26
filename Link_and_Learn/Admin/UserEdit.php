@@ -6,8 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
-  <title>User Edit</title>
+    <link rel="stylesheet" href="../Stylesheets/style.css" type="text/css">
+    <script src="https://cdn.tiny.cloud/1/vq1rq2p69wax28njpht11pigfyry07aksn56iwrrgnkrhe3x/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <title>User Edit</title>
+  <style>
+        body{
+            background-color:#EAD064;
+        }
+        h1{
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            height: 50px;
+            color:#B93836;
+            font-size:60px;
+            margin-left:auto;margin-right:auto;
+            margin-top:50px;
+            
+        }
+        .footextra{
+            background-color:#EABC64;
+            position: relative;
+            bottom: 0;
+            width: 100.5%;
+            padding-top:10px;
+            font-size: 20px;
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+
+        }
+        .loginbtn{
+            margin-top:80px;
+            width: 200px;
+            height: 60px;
+            font-size:26px;
+            margin-right: 50%;
+
+        }
+        .logoutbtn{
+            width: 200px;
+            height: 60px;
+            font-size:26px;
+        }
+        .username{
+            margin-top:20px;
+            max-height: 30px;
+            font-size:26px;
+            margin-right: 50%;
+            width:100%;
+            overflow: hidden;
+            
+        }
+        .headerrow{
+            background-color:#EABC64;
+            width:100.5%;
+            overflow: hidden;
+        }
+        .logobtn{
+            opacity: 50%;
+        }
+        @media only screen and (max-width: 1000px) {
+            h1{
+                margin-left: 200px;
+                font-size:45px;   
+            }
+            .logbtns{
+                display:block;
+                width: 100%;
+                height: 150px;
+            }
+            .username{
+                display:block;
+                margin-bottom:30px;
+                width: 100%;
+            }
+        
+        }
+        h2{
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color:#B93836;
+            font-size:50px;
+            margin-top:50px;
+        }
+        .row{
+            max-width: 100.5%;
+        }
+        textarea{
+            padding-top:30px;
+            padding-bottom:30px;
+        }
+        .hiddenitems{
+            display: none;
+        }
+        .spacing{
+            margin-bottom: 20px;
+        }
+
+    </style>
 </head>
 <body>
     <?php
@@ -131,26 +228,66 @@
 
     ?>
 
-    <h2>Edit User</h2>
+    <div class="row headerrow">
+        <div class="col-2 text-start">
+            <h2>Admin</h2>
+        </div>
+        <div class="col-8 text-center">
+            <h1>Link up and Learn</h1>
+        </div>
+        <div class="col-2 text-center logbtns">
+            <?php if(isset($_SESSION['user'])): ?>
+                <h3 class="username"><?= $_SESSION['user']; ?></h3>
+                <a href="Logout.php">
+            <button class="custom-btn btn-14 logoutbtn">
+                Logout
+            </button>
+            </a>
+            <?php else: ?>
+                <h3 class="username">Guest</h3>
+            <a href="../Login.php">
+            <button class="custom-btn btn-14 logoutbtn" id="loginbtn">
+                Login
+            </button>
+            </a>
+            <?php endif; ?>
+            
+        </div>
+        <div class="d-flex justify-content-evenly" style="margin-top: 20px">
+            <a href="user.php">Users</a>
+            <a href="loginattempts.php">Log Attempts</a>
+            <a href="changeLog.php">ChangeLog</a>
+        </div>
+        
+    </div>
 
     
+
+    <div class="row text-center">
+    <h2>Edit User</h2>
     <form name="account" method="post" action="UserEdit.php">
         <div class="wrapper">
             <form method="post" name="editaccont">
-                <labl>Username: </label>
+                <div class="spacing">
+                <label>Username: </label>
                 <input type="text" name="username" value="<?php echo $username?>" <?=$readonly?> >
                 <br>
-                <labl>Password: </label>
+                </div>
+                <div class="spacing">
+                <label>Password: </label>
                 <input id="passchangebutton" type="button" value="ChangePassword" onclick="inputchange()">
 
                 <input id="passchangetext" type="hidden" name="logpassword" onclick="inputchange()" value="" />
                 <br>
-                <labl>Role: </label>
+                </div>
+                <div class="spacing">
+                <label>Role: </label>
                 <select id="perm" name="perm">
                     <option value="2" <?php if ($perm == 'Admin') echo "selected"; ?> >Admin</option>
                     <option value="1" <?php if ($perm == 'Owner') echo "selected"; ?>>Owner</option>
                     <option value="0" <?php if ($perm == 'User') echo "selected"; ?>>User</option>
                 </select>
+                </div>
                 <div>
                     &nbsp;
                 </div>
@@ -168,6 +305,7 @@
             <?= $error ?>
         </ul>
     </form>
+    </div>
     
 </body>
 <script>
