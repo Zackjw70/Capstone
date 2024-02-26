@@ -288,9 +288,15 @@ function searchLoginAttempts($username){
 
     return ($results);
 }
+
+
+
+//Functions for page Layouts
+
 function getContent($section){
     global $db;
     $binds = array();
+    $results = "";
 
     $stmt = $db->prepare("SELECT * FROM pagelayouts WHERE section = :s");
     $stmt->bindValue(':s', $section);

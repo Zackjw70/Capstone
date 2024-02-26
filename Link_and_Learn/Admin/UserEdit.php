@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
+    header ('Location: ../Login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,6 +109,9 @@
         }
         .spacing{
             margin-bottom: 20px;
+        }
+        .d-flex{
+            margin-bottom: 10px;
         }
 
     </style>
@@ -238,7 +248,7 @@
         <div class="col-2 text-center logbtns">
             <?php if(isset($_SESSION['user'])): ?>
                 <h3 class="username"><?= $_SESSION['user']; ?></h3>
-                <a href="Logout.php">
+                <a href="../Logout.php">
             <button class="custom-btn btn-14 logoutbtn">
                 Logout
             </button>
@@ -254,6 +264,8 @@
             
         </div>
         <div class="d-flex justify-content-evenly" style="margin-top: 20px">
+            <a href="../home.php">Home Page</a>
+            <a href="../Backend/HomeEdit.php">Edit Home Page</a>
             <a href="user.php">Users</a>
             <a href="loginattempts.php">Log Attempts</a>
             <a href="changeLog.php">ChangeLog</a>

@@ -42,7 +42,7 @@ h1{
     border: none;
     z-index: 1;
   }
-  .btn-14:after, input[type=submit]:after{
+.btn-14:after, input[type=submit]:after{
     position: absolute;
     content: "";
     width: 100%;
@@ -58,17 +58,18 @@ h1{
     4px 4px 5px 0px rgba(0,0,0,.1);
     transition: all 0.3s ease;
   }
-  .btn-14:hover, input[type=submit]:hover{
+.btn-14:hover, input[type=submit]:hover{
     color: #000;
   }
-  .btn-14:hover:after, input[type=submit]:hover:after {
+.btn-14:hover:after, input[type=submit]:hover:after {
     top: auto;
     bottom: 0;
     height: 100%;
   }
-  .btn-14:active, input[type=submit]:active{
+.btn-14:active, input[type=submit]:active{
     top: 2px;
   }
+
 
 
   
