@@ -178,7 +178,7 @@ if (isset($_POST['login'])){
         <div class="row headerrow" style="width:101%;">
             <div class="col-2 text-start">
                 <a href="home.php">
-                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
+                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn" style="height:150px; width:150px;">
                 </a>
             </div>
             <div class="col-8 text-center">

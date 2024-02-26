@@ -151,34 +151,7 @@
 </head>
 <body>
     <div>
-        <div class="row headerrow">
-            <div class="col-2 text-start">
-                <a href="home.php">
-                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn">
-                </a>
-            </div>
-            <div class="col-8 text-center">
-                <h1>Link up and Learn</h1>
-            </div>
-            <div class="col-2 text-center logbtns">
-                <?php if(isset($_SESSION['user'])): ?>
-                    <h3 class="username"><?= $_SESSION['user']; ?></h3>
-                    <a href="Logout.php">
-                <button class="custom-btn btn-14 logoutbtn">
-                    Logout
-                </button>
-                </a>
-                <?php else: ?>
-                    <h3 class="username">Guest</h3>
-                <a href="Login.php">
-                <button class="custom-btn btn-14 logoutbtn" id="loginbtn">
-                    Login
-                </button>
-                </a>
-                <?php endif; ?>
-            </div>
-
-        </div>
+    <?php include 'includes/header.php';?>
         <div class="row">
                 <div class="col-4">
                       
@@ -205,8 +178,8 @@
                           <script>
                             tinymce.init({
                                 selector: 'textarea',
-                                plugins: 'tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | image | removeformat',
                                 tinycomments_mode: 'embedded',
                                 tinycomments_author: 'Author name',
                                 mergetags_list: [
@@ -267,15 +240,18 @@
             </div>
         </div>
         <?php foreach ($allReviews as $a): ?>
-            <div class="row" style="margin-top:40px; margin-bottom:40px">
+            <div class="row" style="margin-top:40px; margin-bottom:40px;">
                 <div class="col-3">
 
                 </div>
-                <div class="col-6">
+                <div class="col-6" style=" border-bottom: 1px solid black;">
                     <?= $a['review'];?>
                 </div>
+                <div class="col-1" style=" border-bottom: 1px solid black;">
+                    <?= date("Y-m-d", strtotime($a['datesubmitted'])); ?>
+                </div>
             </div>
-            <hr>
+            
         <?php endforeach; ?>
         <footer class="row footextra Layout container">
             <p>Name:</p>
