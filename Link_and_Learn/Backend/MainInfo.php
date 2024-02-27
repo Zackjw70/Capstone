@@ -139,46 +139,15 @@
     </style>
 </head>
 <body>
-    <div class="row headerrow">
-        <div class="col-2 text-start">
-            <h2>Staff</h2>
-        </div>
-        <div class="col-8 text-center">
-            <h1>Link up and Learn</h1>
-        </div>
-        <div class="col-2 text-center logbtns">
-            <?php if(isset($_SESSION['user'])): ?>
-                <h3 class="username"><?= $_SESSION['user']; ?></h3>
-                <a href="../Logout.php">
-            <button class="custom-btn btn-14 logoutbtn">
-                Logout
-            </button>
-            </a>
-            <?php else: ?>
-                <h3 class="username">Guest</h3>
-            <a href="../Login.php">
-            <button class="custom-btn btn-14 logoutbtn" id="loginbtn">
-                Login
-            </button>
-            </a>
-            <?php endif; ?>
-            
-        </div>
-        <div class="d-flex justify-content-evenly" style="margin-top: 20px">
-            <a href="../home.php">Home Page</a>
-            <a href="../Backend/HomeEdit.php">Edit Home Page</a>    
-            <a href="ViewReviews.php">View Reviews</a>
-            <a href="MainInfo.php">Main Info</a>
-        </div>
-        
-    </div>
+    <?php include '../includes/backheader.php';?>
+    <div>
+        <form name="maininfo">
+            <label>Page Name</label>
+            <input type="text" name="username" value="
+
+        </form>
+    </div> 
 
     
     
 </body>
-</html>
-    <?php include '../includes/backheader.php';?>
-        <div>
-
-        </div>
-                </body>

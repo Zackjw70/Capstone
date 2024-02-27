@@ -113,6 +113,22 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
         .d-flex{
             margin-bottom: 10px;
         }
+        p{
+            line-height: 1.5;
+            font-family: "Lato";
+            font-size: 20px;
+        }
+        .aButtons{
+            text-decoration:none;
+            color:#B93836;
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size:30px;
+        }
+        .aButtons:hover{
+            color:black;
+        }
 
     </style>
 </head>
@@ -264,11 +280,11 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
             
         </div>
         <div class="d-flex justify-content-evenly" style="margin-top: 20px">
-            <a href="../home.php">Home Page</a>
-            <a href="../Backend/HomeEdit.php">Edit Home Page</a>
-            <a href="user.php">Users</a>
-            <a href="loginattempts.php">Log Attempts</a>
-            <a href="changeLog.php">ChangeLog</a>
+            <a href="../home.php" class="aButtons">Home Page</a>
+            <a href="../Backend/HomeEdit.php" class="aButtons">Edit Home Page</a>
+            <a href="user.php" class="aButtons">Users</a>
+            <a href="loginattempts.php" class="aButtons">Log Attempts</a>
+            <a href="changeLog.php" class="aButtons">ChangeLog</a>
         </div>
         
     </div>
