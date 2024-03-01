@@ -140,14 +140,47 @@
 </head>
 <body>
     <?php include '../includes/backheader.php';?>
-    <div>
-        <form name="maininfo">
-            <label>Page Name</label>
-            <input type="text" name="username" value="
-
-        </form>
-    </div> 
-
+    </div>
     
+    <form name="account" method="post" action="UserEdit.php">
+        <div>
+            <form method="post" name="maininfo">
+                <div class="spacing">
+                <label>Page Name: </label>
+                <input type="text" name="username" value="Link up and Learn">
+                </div>
+                <br>
+                <div class="spacing">
+                <label>Logo: </label>
+                <img src="../images/Link-up_and_Learn_Logo.png" width="200" height="200">
+                <input type="button" name="imagebutton" value="change image">
+                </div>
+                <br>
+                <div class="spacing">
+                <label>Name: </label>
+                <input type="text" name="ownername" value="Terri Clayman">
+                </div>
+                <br>
+                <div class="spacing">
+                <label>Phone: </label>
+                <input type="text" name="phonenumber" value="111-222-3333">
+                </div>
+                <br>
+                <div class="spacing">
+                <label>Email: </label>
+                <input type="text" name="email" value="TerriClayman@gmail.com">
+                </div>
+                <div>
+                    &nbsp;
+                </div>
+                <div>
+                <input type="submit" name="submit" value="Submit Changes" style="width: 150px">
+                </div>
+
+            </form>
+        </div> 
+    </form>
+
+
     
 </body>

@@ -259,13 +259,33 @@ function getLoginAttempts(){
 function login($user,$pass){
     global $db;
     $results = [];
+    $datainsert = "";
+    date_default_timezone_set('America/New_York');
+    
     $stmt = $db ->prepare("SELECT * FROM users WHERE username = :user ANd logpassword = :pass");
     $stmt->bindValue(':user', $user);
     $stmt->bindValue(':pass', crypt($pass,'$5$'));
 
     if ($stmt->execute()&& $stmt->rowCount() > 0)
-            {$results = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+        {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            $pass = "Pass";
+        }
+    else{
+        $pass = "Fail";
+    }
+
+    $stmt = $db->prepare("INSERT INTO loginattempts set username = :un, Attemptedpassword = :ap, successful = :ss, AttemptTime = :tm");
+    
+    $binds = array(
+        ":un" => $user,
+        ":ap" => crypt($pass, '$5$'),
+        ":ss" => $pass,
+        ":tm" => date("Y/m/d h:i:s", (time()))
+    );
+    
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0){
+            $datainsert = "data added";
         }
     return ($results);
 }
@@ -350,6 +370,30 @@ function addContent($text, $section, $now){
     }
 
     return ($result);
+}
+
+//main info
+function editmain($title, $image, $owner, $phone, $email){
+    global $db;
+
+    $orig = $title;
+    $results = "";
+    $stmt = $db->prepare("UPDATE maininfo SET title = :t, picture = :p, ownername = :o, phone = :ph, email = :e WHERE title = :orig");
+
+    $binds = array(
+        ":t" => $title,
+        ":p" => $image,
+        ":o" => $owner,
+        ":ph" => $phone,
+        ":e" => $email,
+        ":orig" => $orig
+    );
+
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Data Updated";
+    }
+    
+    return($results);
 }
 
 ?>
