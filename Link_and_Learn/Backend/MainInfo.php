@@ -9,6 +9,7 @@
     }
 
 
+
 ?>
 
 
@@ -138,6 +139,49 @@
 
     </style>
 </head>
+<?php
+
+    $info = getmain();
+    $title = $info["title"];
+    $picture = $info["picture"];
+    $ownername = $info["ownername"];
+    $phone = $info["phone"];
+    $email = $info["email"];
+    $error = "";
+
+    if(isset($_POST['uploadImg'])){
+        if(isset($_FILES['mainImg'])){
+            $temp_name = $_FILES['mainImg']['tmp_name'];
+
+            $path = getcwd() . DIRECTORY_SEPARATOR . '../images';
+            $new_name = $path . DIRECTORY_SEPARATOR . $_FILES['mainImg']['name'];
+
+            move_uploaded_file($temp_name, $new_name);
+
+            $imgUrl = str_replace(['C:\xampp\htdocs\Capstone\Link_and_Learn\Backend../'],'',$new_name);
+            $now = new DateTime();
+            $now = $now->format('Y-m-d');
+            deleteImages();
+            addContent($imgUrl, 3, $now, $now);
+
+        }
+    }
+
+    if(isset($_POST['submit_changes'])){
+        $title = filter_input(INPUT_POST, 'titlename');
+        $picture = filter_input(INPUT_POST, 'mainImg');
+        $ownername = filter_input(INPUT_POST, 'ownername');
+        $phone = filter_input(INPUT_POST, 'phonenumber');
+        $email = filter_input(INPUT_POST, 'emailurl');
+
+        if($error == ""){
+            editmain($title, $picture, $ownername, $phone, $email);
+            header('Location: homeedit.php');
+        }
+    }
+    
+
+?>
 <body>
     <?php include '../includes/backheader.php';?>
     </div>
@@ -147,13 +191,19 @@
             <form method="post" name="maininfo">
                 <div class="spacing">
                 <label>Page Name: </label>
-                <input type="text" name="username" value="Link up and Learn">
+                <input type="text" name="titlename" value="Link up and Learn">
                 </div>
                 <br>
                 <div class="spacing">
                 <label>Logo: </label>
-                <img src="../images/Link-up_and_Learn_Logo.png" width="200" height="200">
-                <input type="button" name="imagebutton" value="change image">
+                <img src="../<?= $img['contentText']; ?>" style="height:150px; width:150px;">
+                    <form method="post" id="imageUpload" name="imageUpload"  enctype="multipart/form-data">
+                        <input type="file" name="mainImg" value="../<?= $img['contentText']; ?>">
+                        <input type="submit" class="xtraSpacing" value="Upload" name="uploadImg">
+                    </form>
+                </div>
+                <!--<img src="../images/Link-up_and_Learn_Logo.png" width="200" height="200">-->
+                <!--<input type="button" name="imagebutton" value="change image">-->
                 </div>
                 <br>
                 <div class="spacing">
@@ -168,13 +218,13 @@
                 <br>
                 <div class="spacing">
                 <label>Email: </label>
-                <input type="text" name="email" value="TerriClayman@gmail.com">
+                <input type="text" name="emailurl" value="TerriClayman@gmail.com">
                 </div>
                 <div>
                     &nbsp;
                 </div>
                 <div>
-                <input type="submit" name="submit" value="Submit Changes" style="width: 150px">
+                <input type="submit" name="submit_changes" value="Submit Changes" style="width: 150px">
                 </div>
 
             </form>

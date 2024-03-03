@@ -373,6 +373,18 @@ function addContent($text, $section, $now){
 }
 
 //main info
+function getmain(){
+    global $db;
+    $results = [];
+    $sqlstring = $db ->prepare("SELECT title, picture, ownername, phone, email FROM maininfo");
+    if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
+        $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
+    }
+    var_dump($results);
+
+    return ($results);
+}
+
 function editmain($title, $image, $owner, $phone, $email){
     global $db;
 

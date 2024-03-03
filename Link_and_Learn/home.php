@@ -149,7 +149,7 @@
             <div class="col-4"></div>
             <div class="col-md-4"><h2>Announcments</h2></div>
             <div class="col-md-1"></div>
-            <div class="col-md-3"><a href=""><button class="custom-btn btn-14 bookbtn" style="width:300px; margin-top:20px;margin-bottom:20px;">Book an appointment</button></a></div>
+            <div class="col-md-3"><a href="https://calendly.com/andrewrockwell20/test" target="_blank"><button class="custom-btn btn-14 bookbtn" style="width:300px; margin-top:20px;margin-bottom:20px;">Book an appointment</button></a></div>
             
         </div>
         <?php foreach ($anno as $a): ?>
