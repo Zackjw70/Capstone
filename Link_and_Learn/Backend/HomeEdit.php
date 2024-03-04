@@ -153,6 +153,7 @@
         }
         .aButtons{
             text-decoration:none;
+            
             color:#B93836;
             font-family: "Architects Daughter", cursive;
             font-weight: 400;

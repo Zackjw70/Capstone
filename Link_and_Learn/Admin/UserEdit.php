@@ -129,6 +129,11 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
         .aButtons:hover{
             color:black;
         }
+        label {
+        display: inline-block;
+        width: 100px;
+        
+        }
 
     </style>
 </head>
@@ -254,44 +259,11 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
 
     ?>
 
-    <div class="row headerrow">
-        <div class="col-2 text-start">
-            <h2>Admin</h2>
-        </div>
-        <div class="col-8 text-center">
-            <h1>Link up and Learn</h1>
-        </div>
-        <div class="col-2 text-center logbtns">
-            <?php if(isset($_SESSION['user'])): ?>
-                <h3 class="username"><?= $_SESSION['user']; ?></h3>
-                <a href="../Logout.php">
-            <button class="custom-btn btn-14 logoutbtn">
-                Logout
-            </button>
-            </a>
-            <?php else: ?>
-                <h3 class="username">Guest</h3>
-            <a href="../Login.php">
-            <button class="custom-btn btn-14 logoutbtn" id="loginbtn">
-                Login
-            </button>
-            </a>
-            <?php endif; ?>
-            
-        </div>
-        <div class="d-flex justify-content-evenly" style="margin-top: 20px">
-            <a href="../home.php" class="aButtons">Home Page</a>
-            <a href="../Backend/HomeEdit.php" class="aButtons">Edit Home Page</a>
-            <a href="user.php" class="aButtons">Users</a>
-            <a href="loginattempts.php" class="aButtons">Log Attempts</a>
-            <a href="changeLog.php" class="aButtons">ChangeLog</a>
-        </div>
-        
-    </div>
+    <?php include '../includes/adminheader.php'; ?>
 
     
 
-    <div class="row text-center">
+    <div class="row text-center justify-content-center">
     <h2>Edit User</h2>
     <form name="account" method="post" action="UserEdit.php">
         <div class="wrapper">

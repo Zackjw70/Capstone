@@ -380,6 +380,7 @@ function getmain(){
     if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
         $results = $sqlstring -> fetch(PDO::FETCH_ASSOC);
     }
+    
 
     return ($results);
 }
@@ -389,7 +390,7 @@ function editmain($title, $image, $owner, $phone, $email){
 
     $orig = $title;
     $results = "";
-    $stmt = $db->prepare("UPDATE maininfo SET title = :t, picture = :p, ownername = :o, phone = :ph, email = :e WHERE title = :orig");
+    $stmt = $db->prepare("UPDATE maininfo SET title = :t, picture = :p, ownername = :o, phone = :ph, email = :e");
 
     $binds = array(
         ":t" => $title,
@@ -397,7 +398,6 @@ function editmain($title, $image, $owner, $phone, $email){
         ":o" => $owner,
         ":ph" => $phone,
         ":e" => $email,
-        ":orig" => $orig
     );
 
     if ($stmt->execute($binds) & $stmt->rowCount() > 0){

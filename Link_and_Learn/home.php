@@ -135,6 +135,17 @@
         .anno{
             font-size: 35px;
         }
+        .aButtons{
+            text-decoration:none;
+            color:#B93836;
+            font-family: "Architects Daughter", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size:30px;
+        }
+        .aButtons:hover{
+            color:black;
+        }
 
     </style>
     
