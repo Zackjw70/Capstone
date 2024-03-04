@@ -7,6 +7,15 @@
     if($perm < 1){
         header('Location: ../home.php');
     }
+    if (isset($_POST['delete'])){
+        $id = filter_input(INPUT_POST, 'reviewid');
+        reviewDelete($id);
+    }
+
+
+
+    $reviews = getAllReviews();
+
 
 
 ?>
@@ -22,125 +31,44 @@
     <title>Link-Up and Learn</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Stylesheets/style.css" type="text/css">
     <script src="https://cdn.tiny.cloud/1/vq1rq2p69wax28njpht11pigfyry07aksn56iwrrgnkrhe3x/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <style>
-        body{
-            background-color:#EAD064;
-        }
-        h1{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            height: 50px;
-            color:#B93836;
-            font-size:60px;
-            margin-left:auto;margin-right:auto;
-            margin-top:50px;
-            
-        }
-        .footextra{
-            background-color:#EABC64;
-            position: relative;
-            bottom: 0;
-            width: 100.5%;
-            padding-top:10px;
-            font-size: 20px;
-            font-family: "Inter", sans-serif;
-            font-weight: 400;
-
-        }
-        .loginbtn{
-            margin-top:80px;
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-            margin-right: 50%;
-
-        }
-        .logoutbtn{
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-        }
-        .username{
-            margin-top:20px;
-            max-height: 30px;
-            font-size:26px;
-            margin-right: 50%;
-            width:100%;
-            overflow: hidden;
-            
-        }
-        .headerrow{
-            background-color:#EABC64;
-            width:100.5%;
-            overflow: hidden;
-        }
-        .logobtn{
-            opacity: 50%;
-        }
-        @media only screen and (max-width: 1000px) {
-            h1{
-                margin-left: 200px;
-                font-size:45px;   
-            }
-            .logbtns{
-                margin-top:50px;
-                display:block;
-                width: 100%;
-                height: 150px;
-            }
-            .username{
-                display:block;
-                margin-bottom:30px;
-                width: 100%;
-            }
-        
-        }
-        h2, h3{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            color:#B93836;
-            font-size:50px;
-            margin-top:50px;
-        }
-        h3{
-            font-size: 30px;
-        }
-        .row{
-            max-width: 100.5%;
-        }
-        textarea{
-            padding-top:30px;
-            padding-bottom:30px;
-        }
-        .hiddenitems{
-            display: none;
-        }
-        p{
-            line-height: 1.5;
-            font-family: "Lato";
-            font-size: 20px;
-        }
-        .aButtons{
-            text-decoration:none;
-            color:#B93836;
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            font-size:30px;
-        }
-        .aButtons:hover{
-            color:black;
-        }
-
-    </style>
+    
+    <link rel="stylesheet" href="../Stylesheets/style.css" type="text/css">
 </head>
-<body>
+<body class="everyThang">
     <?php include '../includes/backheader.php';?>
-        <div>
-
+        <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+                <h1 class="head1 xtraSpacing">Reviews</h1>
+            </div>
+        </div>  
+            <?php foreach ($reviews as $r): ?>
+        <div class="xtraSpacing">
+            <div class="row">
+            <div class="col-md-6 offset-md-3 par" >
+                
+                    <b><?= $r['datesubmitted']; ?></b>
+            </div>
         </div>
-                </body>
+        <div class="row">
+            <div class="col-md-1 offset-md-2 text-center">
+                <a href="ReviewsEdit.php?reviewid=<?= $r['Reviewid'];?>" class="custom-btn btn-14" style="text-decoration:none;">Update</a>
+
+            </div>
+            <div class="col-md-6 par">
+                    <?= $r['review'];?>
+            </div>
+            <div class="col-md-1">
+                <form method="post" name="deleteReview">
+                    <input type="hidden" name="reviewid" value="<?=$r['Reviewid'];?>">
+                    <button class="btn-14 custom-btn" name="delete">Delete</button>
+                </form>
+            </div>
+                    
+                    
+            </div>
+        </div>
+        
+        <?php endforeach ;?>
+</body>
+</html>
