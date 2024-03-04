@@ -256,9 +256,7 @@ if (isset($_POST['login'])){
 
         </div>
         <footer class="row footextra">
-            <p>Name:</p>
-            <p>Phone:</p>
-            <p>Email:</p>
+            <?php include 'includes/footer.php';?>
         </footer>
         
         

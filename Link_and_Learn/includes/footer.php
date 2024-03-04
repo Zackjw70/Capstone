@@ -1,8 +1,15 @@
-<?php include '../includes/backheader.php' ?>
+<?php
+
+    $info = getmain();
+    $ownername = $info["ownername"];
+    $phone = $info["phone"];
+    $email = $info["email"];
+
+?>
 
 
 <footer class="row footextra">
-    <p><?php $ownername?></p>
-    <p>Phone: <?php $phone?></p>
-    <p>Email: <?php $email?></p>
+    <p><?= $ownername?></p>
+    <p>Phone: <?= $phone?></p>
+    <p>Email: <?= $email?></p>
 </footer>

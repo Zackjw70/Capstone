@@ -151,6 +151,7 @@
 
     if(isset($_POST['uploadImg'])){
         if(isset($_FILES['mainImg'])){
+            var_dump($temp_name = $_FILES['mainImg']['tmp_name']);
             $temp_name = $_FILES['mainImg']['tmp_name'];
 
             $path = getcwd() . DIRECTORY_SEPARATOR . '../images';
@@ -186,7 +187,7 @@
     <?php include '../includes/backheader.php';?>
     </div>
     
-    <form name="account" method="post" action="UserEdit.php">
+    <form name="account" method="post">
         <div>
             <form method="post" name="maininfo">
                 <div class="spacing">
@@ -196,7 +197,7 @@
                 <br>
                 <div class="spacing">
                 <label>Logo: </label>
-                <img src="../<?= $img['contentText']; ?>" style="height:150px; width:150px;">
+                <img src="../images/Link_up_and_learn_logo;" style="height:150px; width:150px;">
                     <form method="post" id="imageUpload" name="imageUpload"  enctype="multipart/form-data">
                         <input type="file" name="mainImg" value="../<?= $img['contentText']; ?>">
                         <input type="submit" class="xtraSpacing" value="Upload" name="uploadImg">

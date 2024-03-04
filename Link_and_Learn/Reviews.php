@@ -254,9 +254,7 @@
             
         <?php endforeach; ?>
         <footer class="row footextra Layout container">
-            <p>Name:</p>
-            <p>Phone:</p>
-            <p>Email:</p>
+            <?php include 'includes/footer.php';?>
         </footer>
 
         

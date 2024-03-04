@@ -378,9 +378,8 @@ function getmain(){
     $results = [];
     $sqlstring = $db ->prepare("SELECT title, picture, ownername, phone, email FROM maininfo");
     if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
-        $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
+        $results = $sqlstring -> fetch(PDO::FETCH_ASSOC);
     }
-    var_dump($results);
 
     return ($results);
 }

@@ -263,9 +263,7 @@ if (isset($_POST['login'])){
 
         </div>
         <footer class="card-footer footextra">
-            <p>Name:</p>
-            <p>Phone:</p>
-            <p>Email:</p>
+            <?php include 'includes/footer.php';?>
         </footer>
         
         
