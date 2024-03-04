@@ -204,6 +204,17 @@ function getOneReview($review){
 
     return ($results);
 }
+function getOneReviewId($id){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM reviews WHERE Reviewid = :r");
+    $stmt->bindValue(':r', $id);
+    if ($stmt -> execute() && $stmt ->rowCount() > 0){
+        $results = $stmt -> fetch(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
 
 function getShownReviews(){
     global $db;
@@ -318,7 +329,14 @@ function getContent($section){
     $binds = array();
     $results = "";
 
-    $stmt = $db->prepare("SELECT * FROM pagelayouts WHERE section = :s");
+
+    if ($section == 1)
+    {
+        $stmt = $db->prepare("SELECT * FROM pagelayouts WHERE section = :s ORDER BY uploadDate DESC");
+    }
+    else{
+        $stmt = $db->prepare("SELECT * FROM pagelayouts WHERE section = :s ORDER BY uploadDate");
+    }
     $stmt->bindValue(':s', $section);
 
     if($stmt->execute() && $stmt->rowCount() > 0){
@@ -346,22 +364,57 @@ function contentDelete($id){
 function getOneContent($text){
     global $db;
     $results = [];
-    $stmt = $db ->prepare("SELECT * FROM pagelayouts WHERE contentText = :t");
-    $stmt->bindValue(':t', $text);
-    if ($stmt -> execute() && $stmt ->rowCount() > 0){
-        $results = $stmt -> fetchALL(PDO::FETCH_ASSOC);
+    $stmt = $db ->prepare("SELECT * FROM pagelayouts WHERE contentText = :cT");
+    $binds = array(
+        ":cT" => $text
+    );
+    if($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return ($results);
+}
+function getOneText($id){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM pagelayouts WHERE infoid = :id");
+    $stmt->bindValue(':id', $id);
+    if ($stmt->execute() && $stmt ->rowCount() > 0){
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     return ($results);
 }
-function addContent($text, $section, $now){
+function getOneImage($section){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM pagelayouts WHERE section = :id");
+    $stmt->bindValue(':id', $section);
+    if ($stmt->execute() && $stmt ->rowCount() > 0){
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
+function getFootImages($section){
+    global $db;
+    $results = [];
+    $stmt = $db ->prepare("SELECT * FROM pagelayouts WHERE section = :id");
+    $stmt->bindValue(':id', $section);
+    if ($stmt->execute() && $stmt ->rowCount() > 0){
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
+function addContent($text, $section, $now, $edit){
     global $db;
     $result = "";
-    $stmt = $db->prepare("INSERT INTO pagelayouts set contentText = :t, lastedited = :le, section = :s");
+    $stmt = $db->prepare("INSERT INTO pagelayouts set contentText = :t, lastedited = :le, section = :s, uploadDate = :d");
 
     $binds = array(
         ":t" => $text,
-        ":le" => $now,
+        ":le" => $edit,
+        ":d" => $now,
         ":s" => $section,
     );
 
@@ -370,6 +423,72 @@ function addContent($text, $section, $now){
     }
 
     return ($result);
+}
+function updateSection($id, $text, $now){
+    global $db;
+
+    $results = "";
+    $stmt = $db->prepare("UPDATE pagelayouts SET contentText = :cT, uploadDate = :d WHERE infoid = :id");
+
+    $binds = array(
+        ":cT" => $text,
+        ":d" => $now,
+        ":id" => $id
+    );
+
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Data updated";
+    }
+    return($results);
+}
+function updateReview($id, $text){
+    global $db;
+    $results = '';
+    $stmt = $db->prepare("UPDATE reviews SET review = :c WHERE Reviewid = :id");
+    $binds = array(
+        ":c" => $text,
+        "id" => $id
+    );
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Data updated";
+
+    }
+    return($results);
+}
+function deleteImages(){
+    global $db;
+    $results = '';
+    $stmt = $db->prepare("DELETE FROM pagelayouts WHERE section = 3");
+
+    if($stmt->execute() & $stmt->rowCount() > 0){
+        $results = 'Deleted';
+
+    }
+    return($results);
+}
+function getAllReviews(){
+    global $db;
+    $results = [];
+    $sqlstring = $db ->prepare("SELECT * FROM reviews ORDER BY datesubmitted DESC");
+    if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
+        $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    return ($results);
+}
+function reviewDelete($id){
+    global $db;
+
+    $results = "Review Not Deleted";
+
+    $stmt = $db->prepare("DELETE FROM reviews WHERE reviewid=:id");
+    $stmt->bindValue(':id', $id);
+
+    if($stmt->execute() && $stmt->rowCount() > 0){
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return($results);
 }
 
 //main info
