@@ -237,14 +237,15 @@ function getShown3(){
     return ($results);
 }
 
-function addReview($text, $time){
+function addReview($text, $time, $img){
     global $db;
     $result = "";
-    $stmt = $db->prepare("INSERT INTO reviews set review = :r, datesubmitted = :ds");
+    $stmt = $db->prepare("INSERT INTO reviews set review = :r, datesubmitted = :ds, imageUrl = :iu ");
 
     $binds = array(
         ":r" => $text,
         ":ds" => $time,
+        ":iu" => $img
     );
 
     if ($stmt->execute($binds) && $stmt->rowCount() > 0){
@@ -470,6 +471,31 @@ function reviewDelete($id){
 
     return($results);
 }
+function hideReview($id){
+    global $db;
+    $results = "";
 
+    $stmt = $db->prepare("UPDATE reviews SET shows = 1 WHERE reviewid = :id");
+    $binds = array(
+        ":id" => $id,
+    );
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Hidden";
+    }
+    return($results);
+}
+function showReview($id){
+    global $db;
+    $results = "";
+
+    $stmt = $db->prepare("UPDATE reviews SET shows = 0 WHERE reviewid = :id");
+    $binds = array(
+        ":id" => $id,
+    );
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Shown";
+    }
+    return($results);
+}
 ?>
 

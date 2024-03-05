@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if (empty($_SESSION['perm'])){
+        $_SESSION['perm'] = 0;
+    } 
 
     include __DIR__ . '/DBModel/modelLink.php';
     $count = 0;
@@ -38,7 +41,7 @@
 <body class="everyThang">
     <div>
         <?php include 'includes/header.php';?>
-        <div class="row text-center xtraSpacing">
+        <div class="row text-center">
             <?php if(($_SESSION['perm'] != NULL) && ($_SESSION['perm'] > 0)): ?>
                 <a href="Backend/HomeEdit.php"><Button class="btn-14 custom-btn">To Back</Button></a>
                 

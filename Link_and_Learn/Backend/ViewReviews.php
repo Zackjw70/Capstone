@@ -11,6 +11,15 @@
         $id = filter_input(INPUT_POST, 'reviewid');
         reviewDelete($id);
     }
+    if(isset($_POST['hide'])){
+        $id = filter_input(INPUT_POST, 'hideId');
+        hideReview($id);
+    }
+    if(isset($_POST['show'])){
+        $id = filter_input(INPUT_POST, 'showId');
+        showReview($id);
+    }
+
 
 
 
@@ -42,21 +51,44 @@
                 <h1 class="head1 xtraSpacing">Reviews</h1>
             </div>
         </div>  
+        <div class="row xtraSpacing text-center">
+            <div class="col-md-4 offset-md-4">
+                <a href="../Reviews.php"><Button class="custom-btn btn-14">View Front</Button></a>
+            </div>
+        </div>
             <?php foreach ($reviews as $r): ?>
         <div class="xtraSpacing">
             <div class="row">
-            <div class="col-md-6 offset-md-3 par" >
+            <div class="col-md-6 offset-md-2 par" >
                 
                     <b><?= $r['datesubmitted']; ?></b>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-1 offset-md-2 text-center">
+            <div class="col-md-1 text-center">
+                <?php if ($r['shows'] == 0):?>
+                    <form method="post">
+                        <input type="hidden" name="hideId" value="<?=$r['Reviewid'];?>">
+                        <button name="hide" class="custom-btn btn-14">Hide</button>
+                    </form>
+                <?php else:?>
+                    <form method="post">
+                        <input type="hidden" name="showId" value="<?=$r['Reviewid'];?>">
+                        <button name="show" class="custom-btn btn-14">Show</button>
+                    </form>
+                <?php endif;?>
+            </div>
+            <div class="col-md-1 text-center">
                 <a href="ReviewsEdit.php?reviewid=<?= $r['Reviewid'];?>" class="custom-btn btn-14" style="text-decoration:none;">Update</a>
 
             </div>
             <div class="col-md-6 par">
                     <?= $r['review'];?>
+            </div>
+            <div class="col-md-2">
+                <?php if($r['imageUrl'] !=NULL): ?>
+                    <img src="../contentImages/<?= $r['imageUrl'] ;?>" style="height:150px;">
+                <?php endif;?>
             </div>
             <div class="col-md-1">
                 <form method="post" name="deleteReview">

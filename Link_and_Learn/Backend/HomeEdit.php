@@ -70,11 +70,16 @@
             $now = new DateTime();
             $now = $now->format('Y-m-d');
             $exists = getOneContent($imgUrl);
-            if ($exists == ' '){
+            var_dump($exists);
+            if (empty($exists)){
                 addContent($imgUrl, 4, $now, $now);
             }
             
         }
+    }
+    if(isset($_POST['delBaseImg'])){
+        $id = filter_input(INPUT_POST, 'baseImg');
+        contentDelete($id);
     }
     $anno = getContent(1);
     $desc = getContent(2);
@@ -273,11 +278,22 @@
 
                         
                 </form>
-                <?php foreach($footImg as $f):?>
-
-                <?php endforeach;?>
             </div>
         </div>
+        <div class="row " style="margin-bottom:50px;">
+            <div class="col-md-8 offset-md-2">
+                <?php foreach($footImg as $f):?>
+            
+                    <img src="../contentImages/<?= $f['contentText']; ?>" style="height:150px;">
+                    <form method="post">
+                        <input type="hidden" value="<?= $f['infoid']; ?>" name="baseImg">
+                        <button class="custom-btn btn-14 text-center" style="float:bottom; left:8px;" name="delBaseImg">Delete</button>
+                    </form>
+                    
+                    <?php endforeach;?>
+            </div>
+        </div>
+               
         <script>
             var annoNew = document.querySelector(`#annoAddNewButton`).addEventListener(`click`,(e) =>{
                 var annoMCE = document.querySelector(`.hiddenitems`).style.display = "inline"
