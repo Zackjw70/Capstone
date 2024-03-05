@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if (empty($_SESSION['perm'])){
+        $_SESSION['perm'] = 0;
+    } 
+    
 
     include __DIR__ . '/DBModel/modelLink.php';
 
@@ -14,10 +18,21 @@
         $text = filter_input(INPUT_POST, "textHolder");
         $datetime = new DateTime();
         $datetime = $datetime->format('Y\-m\-d\ h:i:s');
+        if(isset($_FILES['reviewImg'])){
+            $temp_name = $_FILES['reviewImg']['tmp_name'];
+            $path = getcwd() . DIRECTORY_SEPARATOR . 'contentImages';
+            $new_name = $path . DIRECTORY_SEPARATOR . $_FILES['reviewImg']['name'];
+
+            move_uploaded_file($temp_name, $new_name);
+
+            $imgUrl = str_replace(['C:\xampp\htdocs\Capstone\Link_and_Learn\contentImages\\'],'',$new_name);
+        }else{
+            $imgUrl = NULL;
+        }
         if(!empty($text)){
             $exists = getOneReview($text);
             if ($exists = " "){
-                addReview($text, $datetime);
+                addReview($text, $datetime, $imgUrl);
                 $results = "Review submitted!";
             }
             else{
@@ -152,6 +167,12 @@
 <body>
     <div>
     <?php include 'includes/header.php';?>
+    <div class="row text-center">
+            <?php if($_SESSION['perm'] > 0): ?>
+                <a href="Backend/ViewReviews.php"><Button class="btn-14 custom-btn">To Back</Button></a>
+                
+            <?php endif ;?>
+    </div>
         <div class="row">
                 <div class="col-4">
                       
@@ -203,6 +224,8 @@
         <div class="row text-center" style="display:none" id="hiddencheck1">
             <div class="col-4" class="display: block">            
             </div>
+            <form method="POST" id="ReviewMCE" name="uploadForm" enctype="multipart/form-data" >
+                <input type="file" name="reviewImg">
             <div class="col-4 text-center" style="padding-top:30px;padding-bottom:30px; margin-left:auto;margin-right:auto;">
                 <input type="checkbox" name="check1" id="check1">
                 <label for="check1">I acknowledge that the image used contains only my child </label><br>
@@ -214,7 +237,7 @@
             <div class="col-4" class="display: block">            
             </div>
             <div class="col-4 text-center" style="padding-top:30px;padding-bottom:30px; margin-left:auto;margin-right:auto;">
-                <form method="POST" id="ReviewMCE" name="uploadForm">
+                
                     <input type="hidden" name="textHolder" id="TinyMceTxt">
                     <button class="custom-btn btn-14">
                         Submit
