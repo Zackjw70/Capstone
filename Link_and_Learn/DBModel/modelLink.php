@@ -125,7 +125,7 @@ function DeleteUser($user){
 function getChangeLog(){
     global $db;
     $results = [];
-    $sqlstring = $db ->prepare("SELECT changeid, infoid, imageid, changetime, username, successful FROM changelog ORDER BY changetime");
+    $sqlstring = $db ->prepare("SELECT changeid, section, changetime, username, successful FROM changelog ORDER BY changetime");
     if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
         $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
     }
@@ -133,7 +133,7 @@ function getChangeLog(){
     return ($results);
 }
 
-function searchChangeLog($username, $infoid, $imageid){
+function searchChangeLog($username, $section){
     global $db;
     $binds = array();
 
@@ -143,14 +143,9 @@ function searchChangeLog($username, $infoid, $imageid){
         $binds['username'] = '%'.$username.'%';
     }
 
-    if ($infoid != "") {
+    if ($section != "") {
         $sql .= " AND infoid Like :infoid";
         $binds['info'] = '%'.$infoid.'%';
-    }
-
-    if ($imageid != "") {
-        $sql .= " AND imageid Like :imageid";
-        $binds['imageid'] = '%'.$imageid.'%';
     }
 
     $results = array();
@@ -160,6 +155,26 @@ function searchChangeLog($username, $infoid, $imageid){
     }
 
     return ($results);
+}
+
+function addChangeLog ($section, $username, $success){
+    global $db;
+    $result = "";
+    date_default_timezone_set('America/New_York');
+    $stmt = $db->prepare("INSERT INTO changelog set section = :st, changetime = :ct, username = :un, successful = :sc");
+
+    $binds = array(
+        ":st" => $section,
+        ":ct" => date("Y/m/d h:i:s", (time())),
+        ":un" => $username,
+        ":sc" => $success
+    );
+
+    if ($stmt->execute($binds) && $stmt->rowCount() > 0){
+        $result = 'Data Added';        
+    }
+
+    return ($result);
 }
 
 //All functions for Reviews
@@ -250,6 +265,7 @@ function addReview($text, $time, $img){
 
     if ($stmt->execute($binds) && $stmt->rowCount() > 0){
         $result = 'Data Added';
+
     }
 
     return ($result);
@@ -353,11 +369,19 @@ function contentDelete($id){
 
     $results = "Content was NOT deleted";
 
+    $cool = getOneText($id);
+    $section = $cool['section'];
+
     $stmt = $db->prepare("DELETE FROM pagelayouts WHERE infoid=:id");
     $stmt->bindValue(':id', $id);
 
     if($stmt->execute() && $stmt->rowCount() > 0){
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        addChangeLog($section, $_SESSION['user'], 'Pass');
+    }
+
+    else{
+        addChangeLog($section, $_SESSION['user'], 'Fail');
     }
 
     return($results);
@@ -421,8 +445,12 @@ function addContent($text, $section, $now, $edit){
 
     if ($stmt->execute($binds) && $stmt->rowCount() > 0){
         $result = 'Data Added';
+        $success = "Pass";
     }
-
+    else{
+        $success = "Fail";
+    }
+    addChangeLog($section, $_SESSION['user'], $success);
     return ($result);
 }
 function updateSection($id, $text, $now){
@@ -494,6 +522,16 @@ function reviewDelete($id){
 function hideReview($id){
     global $db;
     $results = "";
+    $stmt = $db->prepare("UPDATE reviews SET shows = 1 WHERE reviewid = :id");
+    $binds = array(
+        ":id" => $id,
+    );
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Hidden";
+    }
+    return($results);
+}
+
 
 //main info
 function getmain(){
@@ -530,15 +568,7 @@ function editmain($title, $image, $owner, $phone, $email){
     return($results);
 }
 
-    $stmt = $db->prepare("UPDATE reviews SET shows = 1 WHERE reviewid = :id");
-    $binds = array(
-        ":id" => $id,
-    );
-    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
-        $results = "Hidden";
-    }
-    return($results);
-}
+
 function showReview($id){
     global $db;
     $results = "";

@@ -10,6 +10,7 @@
 
     if (isset($_POST['delete'])){
         $id = filter_input(INPUT_POST, 'textid');
+        $section = 
         contentDelete($id);
     }
 

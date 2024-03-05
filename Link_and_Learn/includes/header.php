@@ -1,5 +1,6 @@
 <?php 
 $info = getmain();
+$title = $info['title'];
 $picture = $info["picture"];
 ?>
 
@@ -10,7 +11,7 @@ $picture = $info["picture"];
                 </a>
             </div>
             <div class="col-md-8 text-center">
-                <h1 class="head1">Link up and Learn</h1>
+                <h1 class="head1"><?=$title?></h1>
             </div>
             <div class="col-md-2 text-center logbtns">
                 <?php if(isset($_SESSION['user'])): ?>

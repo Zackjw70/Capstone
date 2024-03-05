@@ -168,6 +168,7 @@ $error = "";
 
         }
     }*/
+    $info = getmain();
 
     if(isset($_POST['submit_changes'])){
         $title = filter_input(INPUT_POST, 'titlename');
@@ -183,6 +184,9 @@ $error = "";
 
             $imgUrl = str_replace(['C:\xampp\htdocs\Capstone\Capstone\Link_and_Learn\Backend\../'],'',$new_name);
             $picture = $imgUrl;
+            if ($picture = "images\\"){
+                $picture = $info["picture"];
+            }
 
             
         }
@@ -196,7 +200,7 @@ $error = "";
             header('Location: homeedit.php');
         }
     }
-    $info = getmain();
+    
     $title = $info["title"];
     $picture = $info["picture"];
     $ownername = $info["ownername"];
@@ -230,7 +234,7 @@ $error = "";
                 <br>
                 <div class="spacing">
                 <label>Page Name: </label>
-                <input type="text" name="titlename" value="Link up and Learn">
+                <input type="text" name="titlename" value='<?=$title?>' required>
                 </div>
                 <br>
                 <!--<div class="spacing">
@@ -248,17 +252,17 @@ $error = "";
                 <br>
                 <div class="spacing">
                 <label>Name: </label>
-                <input type="text" name="ownername" value="Terri Clayman">
+                <input type="text" name="ownername" value='<?=$ownername?>' required>
                 </div>
                 <br>
                 <div class="spacing">
                 <label>Phone: </label>
-                <input type="text" name="phonenumber" value="111-222-3333">
+                <input type="tel" name="phonenumber" value='<?=$phone?>' required>
                 </div>
                 <br>
                 <div class="spacing">
                 <label>Email: </label>
-                <input type="text" name="emailurl" value="TerriClayman@gmail.com">
+                <input type="email" name="emailurl" value='<?=$email?>' required>
                 </div>
                 <div>
                     &nbsp;

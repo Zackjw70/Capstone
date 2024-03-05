@@ -135,9 +135,8 @@
 
     if(isset($_POST['search'])){
         $username = filter_input(INPUT_POST, 'username');
-        $infoid = filter_input(INPUT_POST, 'infoid');
-        $imageid = filter_input(INPUT_POST, 'imageid');
-        $searchchange = searchChangeLog($username, $infoid, $imageid);
+        $section = filter_input(INPUT_POST, 'section');
+        $searchchange = searchChangeLog($username, $section);
     }
 
 
@@ -153,10 +152,8 @@
             <form method="post" name="searchchange">
                 <label>Search User:</label>
                 <input type="text" name="username" value=""/>
-                <label>Info ID:</label>
-                <input type="text" name="infoid" value=""/>
-                <label>Image ID:</label>
-                <input type="text" name="imageid" value=""/>
+                <label>Section:</label>
+                <input type="text" name="section" value=""/>
                 <input type="submit" name="search" value="Search" />
                 <input type="submit" name="showall" value="Show All" />
             </form>
@@ -165,8 +162,7 @@
         <table class="table table-striped table-warning " style="width: auto;">
             <thead>
                 <tr>
-                    <th>Info ID</th>
-                    <th>Image ID</th>
+                    <th>Section</th>
                     <th>Date</th>
                     <th>Username</th>
                     <th>Success</th>
@@ -176,8 +172,7 @@
                 <?php if(isset($_POST['search'])){
                     foreach($searchchange as $s):?>
                     <tr>
-                        <td><?= $s['infoid']?></td>
-                        <td><?= $s['imageid']?></td>
+                        <td><?= $s['section']?></td>
                         <td><?= $s['changetime']?></td>
                         <td><?= $s['username']?></td>
                         <?php if($s['successful'] == "Pass"): ?>
@@ -194,8 +189,7 @@
                 } elseif(isset($_POST['showall'])){
                     foreach($getchange as $g):?>
                     <tr>
-                        <td><?= $g['infoid']?></td>
-                        <td><?= $g['imageid']?></td>
+                        <td><?= $g['section']?></td>
                         <td><?= $g['changetime']?></td>
                         <td><?= $g['username']?></td>
                         <?php if($g['successful'] == "Pass"): ?>
@@ -212,8 +206,7 @@
                 } else{
                     foreach($getchange as $g):?>
                     <tr>
-                        <td><?= $g['infoid']?></td>
-                        <td><?= $g['imageid']?></td>
+                        <td><?= $g['section']?></td>
                         <td><?= $g['changetime']?></td>
                         <td><?= $g['username']?></td>
                         <?php if($g['successful'] == "Pass"): ?>
