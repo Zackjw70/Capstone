@@ -68,8 +68,8 @@
   }
   .footextra{
       background-color:#F9EED8;
-      position: relative;
-      bottom: 0;
+      position: sticky;
+      bottom: 0vh;
       padding-top:10px;
       font-size: 20px;
       font-family: "Inter", sans-serif;
