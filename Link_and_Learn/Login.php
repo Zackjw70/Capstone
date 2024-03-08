@@ -6,12 +6,15 @@ $picture = $info["picture"];
 $results = '';
 
 if (isset($_POST['login'])){
+    $error = "";
     $errorcnt = 0;
     if(empty($username = filter_input(INPUT_POST, "uName"))){
         $errorcnt += 1;
+        $error .= "<li>Please provide a username </li>";
     }
     if(empty($password = filter_input(INPUT_POST, "uPass"))){
         $errorcnt += 1;
+        $error .= "<li>Please provide a password</li>";
     }
     if($errorcnt == 0){
         $user = login($username, $password);
@@ -33,6 +36,11 @@ if (isset($_POST['login'])){
             
 
             
+        }
+        else{
+            $errorcnt += 1;
+            $results = "Invalid Login!";
+            $error .= "<li>Please Try Again</li>";
         }
         
     }
@@ -124,10 +132,14 @@ if (isset($_POST['login'])){
                     </div>
                 </div>
                 <div class="row text-center">
-                    <div class="col-4">
-
+                    <div class="col-4 row text-center">
+                        <ul>
+                            <?=$error?>
+                        </ul>
                     </div>
-                    <div class="col-4 ">
+
+                    <br>
+                    <div class="col-4 row text-center">
                         <p class="newAcc">Need an account <a href="CreateAccount.php">create!</a> one now</p>
                     </div>
                 </div>

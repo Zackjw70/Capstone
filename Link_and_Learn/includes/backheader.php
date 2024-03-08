@@ -1,6 +1,5 @@
 <?php
-
-getmain();
+$info = getmain();
 $title = $info["title"];
 
 ?>
