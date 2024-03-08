@@ -230,7 +230,6 @@
     width: 800px;
     height: 800px;
     float: left;
-    text-wrap: nowrap;
     margin-left: -12px;
     padding-right: 30px;
     margin-bottom: 30px;
@@ -277,7 +276,6 @@
   .logbtns{
     width:100%;
     font-size: 25px;
-    text-wrap: nowrap;
   }
   .headerrow{
     height: 300px;

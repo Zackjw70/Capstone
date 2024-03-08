@@ -80,7 +80,13 @@ $error = "";
 
         $ownername = filter_input(INPUT_POST, 'ownername');
         $phone = filter_input(INPUT_POST, 'phonenumber');
+        //$email = test_input($_POST["email"]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "Invalid email format";
+    }
+    else{
         $email = filter_input(INPUT_POST, 'emailurl');
+    }
 
         if($error == ""){
             editmain($title, $picture, $ownername, $phone, $email);
@@ -144,7 +150,7 @@ $error = "";
                 <br>
                 <div class="spacing">
                 <label>Phone: </label>
-                <input type="tel" name="phonenumber" value='<?=$phone?>' required>
+                <input type="tel" name="phonenumber" value='<?=$phone?>' placeholder="123-456-6780" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                 </div>
                 <br>
                 <div class="spacing">
@@ -153,6 +159,9 @@ $error = "";
                 </div>
                 <div>
                     &nbsp;
+                </div>
+                <div>
+                    <p><?=$error?>
                 </div>
                 <div>
                 <input type="submit" name="submit_changes" value="Submit Changes" style="width: 150px">
