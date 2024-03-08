@@ -4,9 +4,10 @@ $info = getmain();
 $picture = $info["picture"];
 
 $results = '';
+$error = "";
 
 if (isset($_POST['login'])){
-    $error = "";
+    
     $errorcnt = 0;
     if(empty($username = filter_input(INPUT_POST, "uName"))){
         $errorcnt += 1;
