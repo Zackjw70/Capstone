@@ -43,6 +43,11 @@
     <script src="https://cdn.tiny.cloud/1/vq1rq2p69wax28njpht11pigfyry07aksn56iwrrgnkrhe3x/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     
     <link rel="stylesheet" href="../Stylesheets/style.css" type="text/css">
+    <style>
+    .row{
+        width:100%;
+    }
+    </style>
 </head>
 <body class="everyThang">
     <?php include '../includes/backheader.php';?>

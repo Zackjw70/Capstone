@@ -28,6 +28,9 @@
 
 
     }
+    else{
+        header('Location:HomeEdit.php');
+    }
     
     
     

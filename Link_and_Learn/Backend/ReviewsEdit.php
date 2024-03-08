@@ -20,6 +20,9 @@
             header('location: ViewReviews.php');
         }
     }
+    else{
+        header('Location:ViewReviews.php');
+    }
 
 
 
