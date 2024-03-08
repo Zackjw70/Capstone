@@ -71,7 +71,6 @@
             $now = new DateTime();
             $now = $now->format('Y-m-d');
             $exists = getOneContent($imgUrl);
-            var_dump($exists);
             if (empty($exists)){
                 addContent($imgUrl, 4, $now, $now);
             }
@@ -118,6 +117,11 @@
             
         });
     </script>
+    <style>
+        .row{
+            width:100%;
+        }
+    </style>
 </head>
 <body class="everyThang">
     <div>
@@ -183,7 +187,7 @@
                 
             </div>
             <?php foreach ($anno as $a):?>
-            <div class="row text-center xtraSpacing">
+            <div class="row text-left xtraSpacing">
             
                 <form method="POST" style="display:flex;">
                     <div class="col-md-2">
@@ -242,7 +246,7 @@
                 
             </div>
             <?php foreach ($desc as $d) :?>
-            <div class="row text-center xtraSpacing">
+            <div class="row text-left xtraSpacing">
                 <form method="POST" style="display:flex;">
                     <div class="col-md-2">
 
@@ -281,9 +285,9 @@
                 </form>
             </div>
         </div>
-        <div class="row " style="margin-bottom:50px;">
+        <div class="row " style="margin-bottom:50px;"style="display:inline">
             <div class="col-md-8 offset-md-2">
-                <?php foreach($footImg as $f):?>
+                    <?php foreach($footImg as $f):?>
             
                     <img src="../contentImages/<?= $f['contentText']; ?>" style="height:150px;">
                     <form method="post">
@@ -292,6 +296,7 @@
                     </form>
                     
                     <?php endforeach;?>
+                
             </div>
         </div>
                

@@ -8,7 +8,7 @@
 ?>
 
 
-<footer class="row footextra">
+<footer class="row footextra m-0">
     <p><?= $ownername?></p>
     <p>Phone: <?= $phone?></p>
     <p>Email: <?= $email?></p>
