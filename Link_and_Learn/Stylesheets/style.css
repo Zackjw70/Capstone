@@ -68,8 +68,8 @@
   }
   .footextra{
       background-color:#F9EED8;
-      position: sticky;
-      bottom: 0vh;
+      position: relative;
+      bottom: 100vh;
       padding-top:10px;
       font-size: 20px;
       font-family: "Inter", sans-serif;
@@ -209,7 +209,8 @@
     mix-blend-mode: multiply;
   }
   .annoExtra{
-    overflow: scroll;
+    overflow-y: scroll;
+    max-height: 450px;
   }
   .abouthead{
     display: inline-block;
@@ -250,7 +251,6 @@
   margin-top: 50px;
   margin-left: 50px;
 }
-
 @media only screen and (max-width: 1350px) {
   .head1{
       font-size:30px;

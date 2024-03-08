@@ -77,7 +77,7 @@
             <div class="col-lg-3 col-md-0">
                 <img src="images/Crayons.png" class="crayonImg">
             </div>
-            <div class="col-lg-8" class="annoExtra">
+            <div class="col-lg-9" class="annoExtra" style="max-height:600px;overflow-y:auto;">
                 <h2 class="head2">Announcments</h2>
                 <?php foreach ($anno as $a): ?>
                     <div class="row" style="margin-top:20px;font-size:20px;">
