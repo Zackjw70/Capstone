@@ -69,7 +69,7 @@
   .footextra{
       background-color:#F9EED8;
       position: relative;
-      bottom: 100vh;
+      bottom: 0vh;
       padding-top:10px;
       font-size: 20px;
       font-family: "Inter", sans-serif;
@@ -242,6 +242,9 @@
 }
 .inputsep{
   margin-bottom: 100px;
+}
+.inputsep2{
+  margin-bottom: 50px;
 }
 .newAcc{
   margin-bottom: 20px;
