@@ -158,16 +158,13 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
             $action = filter_input(INPUT_GET, 'action');
             $userpull = filter_input(INPUT_GET, 'username');
             
-
-
             if($action == "Update"){
                 $readonly = "readonly";
                 $user = OneUser($userpull);
                 $username = $user["username"];
                 $logpassword = $user["logpassword"];
                 $perm = $user["perm"];
-                $inputname = "Update_User";
-                
+                $inputname = "Update_User"; 
 
                 if ($perm == '2'){
                     $perm = "Admin";
@@ -204,8 +201,6 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
                 }
                 
             }
-
-
         }
 
         if(isset($_POST['Update_User'])){
@@ -227,11 +222,7 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
                     header('Location: User.php');
                 }
                 
-            }
-            
-            
-
-            
+            }  
         }
 
         elseif(isset($_POST['Add_User'])){
