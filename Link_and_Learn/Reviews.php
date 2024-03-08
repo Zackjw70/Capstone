@@ -59,112 +59,15 @@
     <title>Link-Up and Learn</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
     <script src="https://cdn.tiny.cloud/1/vq1rq2p69wax28njpht11pigfyry07aksn56iwrrgnkrhe3x/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
     <style>
-        body{
-            background-color:#EAD064;
-        }
-        h1{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            height: 50px;
-            color:#B93836;
-            font-size:60px;
-            margin-left:auto;margin-right:auto;
-            margin-top:50px;
-            
-        }
-        .footextra{
-            background-color:#EABC64;
-            position: relative;
-            bottom: 0;
-            width: 100.5%;
-            padding-top:10px;
-            font-size: 20px;
-            font-family: "Inter", sans-serif;
-            font-weight: 400;
-
-        }
-        .loginbtn{
-            margin-top:80px;
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-            margin-right: 50%;
-
-        }
-        .logoutbtn{
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-        }
-        .username{
-            margin-top:20px;
-            max-height: 30px;
-            font-size:26px;
-            margin-right: 50%;
-            width:100%;
-            overflow: hidden;
-            
-        }
-        .headerrow{
-            background-color:#EABC64;
-            width:100.5%;
-            overflow: hidden;
-        }
-        .logobtn{
-            opacity: 50%;
-        }
-        @media only screen and (max-width: 1000px) {
-            h1{
-                margin-left: 200px;
-                font-size:45px;   
-            }
-            .logbtns{
-                display:block;
-                width: 100%;
-                height: 150px;
-            }
-            .username{
-                display:block;
-                margin-bottom:30px;
-                width: 100%;
-            }
-        
-        }
-        h2, h3{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            color:#B93836;
-            font-size:50px;
-            margin-top:50px;
-        }
-        h3{
-            font-size: 30px;
-        }
         .row{
-            max-width: 100.5%;
+            max-width:100%;
         }
-        textarea{
-            padding-top:30px;
-            padding-bottom:30px;
-        }
-        .hiddenitems{
-            display: none;
-        }
-        p{
-            line-height: 1.5;
-            font-family: "Lato";
-            font-size: 20px;
-        }
-
     </style>
-    
 </head>
-<body>
+<body class="everyThang">
     <div>
     <?php include 'includes/header.php';?>
     <div class="row text-center">
@@ -178,14 +81,14 @@
                       
                 </div>
                 <div class="col-4 text-center">
-                    <h2>Reviews</h2>
+                    <h2 class="head2">Reviews</h2>
                 </div>
         </div>
         <div class="row text-center" style="padding-top: 30px; padding-bottom:30px;">
             <div class="col-4">
                       
             </div>
-            <div class="col-4 text-center logbtns">
+            <div class="col-md-4 text-center">
                 <button class="custom-btn btn-14" style="display:inline;width: 300px;"  id="Reviewbtn">
                     Leave Review
                 </button>
@@ -199,8 +102,8 @@
                           <script>
                             tinymce.init({
                                 selector: 'textarea',
-                                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | image | removeformat',
+                                plugins: 'anchor wordcount',
+                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |',
                                 tinycomments_mode: 'embedded',
                                 tinycomments_author: 'Author name',
                                 mergetags_list: [
@@ -210,8 +113,8 @@
                                 
                             });
                         </script>
-                        <textarea >
-                            Leave Review Here!
+                        <textarea placeholder="Leave Review Here!">
+                            
                         </textarea>
                         
                         
@@ -233,8 +136,15 @@
                 <label for="check2">I allow the use of this photo and review to be posted online </label>
             </div>
         </div>
+        <div class="row text-center">
+            <div class="col-lg-4 offset-lg-4 par" style="color:red" id="errors" >
+            
+            </div>
+            
+        </div>
         <div class="row text-center" style="display:none" id="hiddensub">
-            <div class="col-4" class="display: block">            
+            <div class="col-4" class="display: block">
+                    
             </div>
             <div class="col-4 text-center" style="padding-top:30px;padding-bottom:30px; margin-left:auto;margin-right:auto;">
                 
@@ -249,7 +159,7 @@
             
         </div>
         <div class = "row text-center">
-            <h3><?= $results;?></h3>
+            <h3 class="head3"><?= $results;?></h3>
         </div>
         <div>
 
@@ -259,23 +169,28 @@
 
             </div>
             <div class="col-4">
-                <h2>All Reviews</h2>
+                <h2 class="head2">All Reviews</h2>
             </div>
         </div>
-        <?php foreach ($allReviews as $a): ?>
-            <div class="row" style="margin-top:40px; margin-bottom:40px;">
-                <div class="col-3">
-
+        <div class="row m-0">
+            <?php foreach ($allReviews as $a): ?>
+                <div class="col-lg-6 offset-lg-2 par">
+                    <div class="row">
+                        <b><?= date("Y-m-d", strtotime($a['datesubmitted'])); ?></b>
+                    </div>
+                    <div class="row par xtraBottom">
+                        <?= $a['review'];?>
+                        
+                    </div>
+                    
                 </div>
-                <div class="col-6" style=" border-bottom: 1px solid black;">
-                    <?= $a['review'];?>
+                <div class="col-lg-2">
+                    <?php if($a['imageUrl'] !=NULL): ?>
+                      <img src="contentImages/<?= $a['imageUrl'] ;?>" style="height:150px;">
+                    <?php endif;?>
                 </div>
-                <div class="col-1" style=" border-bottom: 1px solid black;">
-                    <?= date("Y-m-d", strtotime($a['datesubmitted'])); ?>
-                </div>
-            </div>
-            
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
         <footer class="row footextra Layout container">
             <?php include 'includes/footer.php';?>
         </footer>
@@ -303,11 +218,13 @@
             
         })
         var subbtn = document.querySelector(`#hiddensub`).addEventListener(`click`, (e) =>{
+                e.preventDefault()
+                var error = document.querySelector(`#errors`)
                 let checkb1 = document.querySelector(`#check1`)
                 let checkb2 = document.querySelector(`#check2`)
                 if (checkb1.checked == true && checkb2.checked == true){
                     var text = tinymce.activeEditor.getContent()
-                    if (text != "<p>Leave Review Here!</p>" && text != ""){
+                    if (text != "<p></p>" && text != ""){
                         console.log(text)
                         inpi = document.querySelector(`#TinyMceTxt`)
                         inpi.value = text
@@ -323,7 +240,14 @@
                         
                         
                     }
+                    else{
+                        error.innerHTML = "Can not leave review blank!"
+                    }
                     
+                }
+                else{
+                error.innerHTML = "Must agree to our review terms!"
+
                 }
                 
                 

@@ -494,7 +494,15 @@ function reviewDelete($id){
 function hideReview($id){
     global $db;
     $results = "";
-
+    $stmt = $db->prepare("UPDATE reviews SET shows = 1 WHERE reviewid = :id");
+    $binds = array(
+        ":id" => $id,
+    );
+    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
+        $results = "Hidden";
+    }
+    return($results);
+}
 //main info
 function getmain(){
     global $db;
@@ -530,15 +538,7 @@ function editmain($title, $image, $owner, $phone, $email){
     return($results);
 }
 
-    $stmt = $db->prepare("UPDATE reviews SET shows = 1 WHERE reviewid = :id");
-    $binds = array(
-        ":id" => $id,
-    );
-    if ($stmt->execute($binds) & $stmt->rowCount() > 0){
-        $results = "Hidden";
-    }
-    return($results);
-}
+
 function showReview($id){
     global $db;
     $results = "";

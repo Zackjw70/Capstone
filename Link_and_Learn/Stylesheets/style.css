@@ -1,13 +1,3 @@
-.col-md-4 {
-  text-align:center;
-}
-
-.col-md-3{
-  text-align:center;
-}
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -71,16 +61,15 @@
       font-style: normal;
       height: 50px;
       color:#B93836;
-      font-size:60px;
-      margin-left:auto;margin-right:auto;
-      margin-top:50px;
+      font-size:44px;
+      margin-left:auto;
+      margin-top: 15px;
       
   }
   .footextra{
-      background-color:#EABC64;
+      background-color:#F9EED8;
       position: relative;
       bottom: 0;
-      width: 100.5%;
       padding-top:10px;
       font-size: 20px;
       font-family: "Inter", sans-serif;
@@ -88,48 +77,39 @@
 
   }
   .loginbtn{
-      margin-top:80px;
-      width: 200px;
-      height: 60px;
-      font-size:26px;
-      margin-right: 50%;
+    width: 110px;
+    height: 50px;
+    font-size:20px;
+    margin-top: 20px;
+    text-align: center;
 
   }
   .logoutbtn{
-      width: 200px;
-      height: 60px;
-      font-size:26px;
+      width: 110px;
+      height: 50px;
+      font-size:20px;
+      margin-top: 20px;
   }
   .username{
-      margin-top:20px;
-      max-height: 30px;
-      font-size:26px;
-      margin-right: 50%;
+      margin-top:25px;
+      max-height: 44px;
+      font-size:44px;
       width:100%;
       overflow: hidden;
       
   }
   .headerrow{
-      background-color:#EABC64;
+      background-color:#F9EED8;
+      height:90px;
   }
+  .headerrow2{
+    background-color:#F9EED8;
+    height:180px;
+}
   .logobtn{
-      opacity: 50%;
-  }
-  @media only screen and (max-width: 1000px) {
-      .head1{
-          margin-left: 200px;
-          font-size:45px;   
-      }
-      .logbtns{
-          display:block;
-          width: 100%;
-          height: 150px;
-      }
-      .username{
-          display:block;
-          margin-bottom:30px;
-          width: 100%;
-      }
+      opacity: 100%;
+      text-align: left;
+      mix-blend-mode: multiply;
   }
   .head2, .head3{
       font-family: "Architects Daughter", cursive;
@@ -158,13 +138,6 @@
   }
   .anno{
       font-size: 35px;
-  }
-  .baseImg{
-      max-width: 150px;
-      max-height: 150px;
-      display:inline;
-      float: left;
-      
   }
   .listBorder{
     border-bottom: 2px solid black;
@@ -209,4 +182,132 @@
     width: 150px;
     height: 150px;
   }
+  .booking{
+    height: 100px;
+    background-color: white;
+    font-size: 64px;
+    font-family: Lato;
+    display: flex;
+  }
+  .needHelp{
+    padding-left: 100px;
+  }
+  .bookHere a{
+    color: #FF0101;
+    display: inline;
+    text-underline-offset: 15px;
+    
+  }
+  .toBack button{
+    width: 150px;
+    font-size: 20px;
+    height: 45px;
+  }
+  .crayonImg{
+    height: 600px;
+    width: 600px;
+    mix-blend-mode: multiply;
+  }
+  .annoExtra{
+    overflow: scroll;
+  }
+  .abouthead{
+    display: inline-block;
+    position: relative;
+    left: auto;
+    padding-left: 0;
+
+    
+  }
+  .xtraBottom{
+    margin-bottom: 40px;
+  }
+  .aboutText{
+    font-size: 25px;
+  }
+  .baseImg{
+    width: 800px;
+    height: 800px;
+    float: left;
+    text-wrap: nowrap;
+    margin-left: -12px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+    
+}
+.inputLog{
+  width: 200px;
+  margin-left: 50px;
+  
+}
+.inputsep{
+  margin-bottom: 100px;
+}
+.newAcc{
+  margin-bottom: 20px;
+}
+.backbtn{
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+@media only screen and (max-width: 1350px) {
+  .head1{
+      font-size:30px;
+      margin-top:25px;  
+  }
+  .booking{
+    font-size: 25px;
+    height: 50px;
+  }
+  .needHelp{
+    width:100%;
+  }
+  .bookHere{
+    width:100%;
+  }
+  .crayonImg{
+    height: 0;
+  }
+}
+@media only screen and (max-width:766px){
+  .head1{
+    font-size:30px;
+  }
+  .logbtns{
+    width:100%;
+    font-size: 25px;
+    text-wrap: nowrap;
+  }
+  .headerrow{
+    height: 300px;
+    text-align: center;
+    line-height: 1;
+    padding-bottom: 20px;
+    margin-top: none;
+  }
+  .headerrow div{
+    height: 20px;
+  }
+  .booking{
+    height: 100px;
+    text-align: center;
+  }
+  .needHelp{
+    padding-left: 0px;
+  }
+  .baseImg{
+    height: 500px;
+    display: block;
+  }
+  .row{
+    width: 100%;
+  }
+  .headerrow2{
+    height: 550px;
+  }
+  
+}
+
+
       

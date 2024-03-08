@@ -1,5 +1,7 @@
 <?php
 include __DIR__ . '/DBModel/modelLink.php';
+$info = getmain();
+$picture = $info["picture"];
 
 $results = '';
 $uNameError = '';
@@ -66,160 +68,54 @@ if (isset($_POST['login'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="Stylesheets/style.css" type="text/css">
     <style>
-        body{
-            background-color:#EAD064;
-        }
-        h1{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            height: 50px;
-            color:#B93836;
-            font-size:60px;
-            margin-left:auto;margin-right:auto;
-            margin-top:50px;
-            
-        }
-        .footextra{
-            background-color:#EABC64;
-            width: 100%;
-            position: fixed;
-            bottom: 0px;
-            padding-top:10px;
-            margin-top: 55px;
-            font-size: 20px;
-            font-family: "Inter", sans-serif;
-            font-weight: 400;
-
-        }
-        label, p{
-            font-family: "Inter", sans-serif;
-            font-weight: 400;
-        }
-        .loginbtn{
-            margin-top:80px;
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-            margin-right: 50%;
-
-        }
-        .headerrow{
-            background-color:#EABC64;
-            
-        }
-        .logobtn{
-            opacity: 50%;
-        }
-        @media only screen and (max-width: 1000px) {
-            h1{
-                margin-left: 200px;
-                font-size:45px;   
-            }
-            .logbtns{
-
-            }
-            table {
-                
-                
-            }
-            .newAcc{
-                font-size: 12px;
-            }
-
-
-        }
-        h2{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            color:#B93836;
-            font-size:50px;
-            margin-top:50px;
-        }
-        input, label{
-            margin-top: 50px;
-            font-size:20px;
-        }
-        table{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        td{
-            padding-left:50px;
-        }
-        button{
-            display: flex;
-            justify-content: center;
-            align:center;
-            margin-top: 0px;
-        }
-        .newAcc{
-            margin-top: 30px;
-        }
-        .errors{
-            color: #F81D1D;
-            margin-top: 20px;
-        }
         .row{
-            max-width: 100.5%;
+            width:100%;
         }
-        .backbtn{
-            margin-top:50px;
-            margin-left: 50px;
-        }
-
     </style>
     
 </head>
-<body>
+<body class="everyThang">
     <div>
-        <div class="row headerrow" style="width:101%;">
-            <div class="col-2 text-start">
-                <a href="home.php">
-                    <img src="images/Link-up_and_Learn_Logo.png" alt="Home" class="logobtn" style="height:150px; width:150px;">
-                </a>
-            </div>
-            <div class="col-8 text-center">
-                <h1>Link up and Learn</h1>
-            </div>
-            <div class="col-2 text-center logbtns">
-            </div>
+    <div class="headerrow row m-0">
+        <div class="col-sm-1 text-start" style="padding-left:0px;">
+            <a href="home.php">
+                <img src="<?= $picture?>" alt="Home" class="logobtn" style="height:90px; width:90px;">
+            </a>
+        </div>
+        <div class="col-lg-8 col-md-6 text-left">
+            <h1 class="head1">Link up and Learn</h1>
+        </div>
         </div>
         <div>
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4">
                     <a href="Login.php"><button class="custom-btn btn-14 backbtn">
                     Back</button></a>
                 </div>
-                <div class="col-4 text-center">
-                    <h2>Create Account</h2>
+                <div class="col-md-4 text-center">
+                    <h2 class="head2 inputsep">Create Account</h2>
                 </div>
             </div>
             <form method="POST">
                 <div class="row">
-                    <div class="col-4">
-
-                    </div>
-                    <div class="col-4 form">
+                    <div class="col-md-4 offset-md-4 form">
                         <table>
                             <tr>
                                 <td>
-                                    <label for="uName">Username:</label>
+                                    <label class="inputsep par" for="uName">Username:</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="uName" value="<?=$username; ?>"><?php echo $uNameError; ?>
+                                    <input class="inputLog inputsep" type="text" name="uName" value="<?=$username; ?>"><?php echo $uNameError; ?>
                                 </td>
                                 
                                 
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="uPass">Password:</label>
+                                    <label class="inputsep par" for="uPass">Password:</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="uPass" value="<?=$password; ?>"><?php echo $uPassError; ?>
+                                    <input class="inputLog inputsep" type="text" name="uPass" value="<?=$password; ?>"><?php echo $uPassError; ?>
                                 </td>
                                 
                                 
@@ -227,10 +123,10 @@ if (isset($_POST['login'])){
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="uPass">Re-Enter Password:</label>
+                                    <label class="par xtraBottom" for="uPass">Re-Enter Password:</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="rePass" value="<?=$pass2; ?>"><?php echo $rePassError; ?>
+                                    <input class="inputLog xtraBottom" type="text" name="rePass" value="<?=$pass2; ?>"><?php echo $rePassError; ?>
                                 </td>
                                 
                                 
@@ -244,7 +140,7 @@ if (isset($_POST['login'])){
                     <div class="col-4">
                         
                     </div>
-                    <div class="col-4 errors">
+                    <div class="col-4 errors" style="height:20px;margin-bottom:20px; color:red">
                         <p> <?php echo $results; ?></p>
                     </div>
                 </div>
@@ -253,7 +149,7 @@ if (isset($_POST['login'])){
                         
                     </div>
                     <div class="col-4">
-                        <button name="login" class="custom-btn btn-14">Create</button>
+                        <button name="login" class="custom-btn btn-14" style="margin-bottom:58px;">Create</button>
                     </div>
                 </div>
             </form>
@@ -265,16 +161,6 @@ if (isset($_POST['login'])){
         <footer class="card-footer footextra">
             <?php include 'includes/footer.php';?>
         </footer>
-        
-        
-        
-        
-    </div>
-    <div>
-
-    </div>
-    <div>
-
     </div>
     
  
