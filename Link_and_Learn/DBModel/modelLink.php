@@ -144,8 +144,8 @@ function searchChangeLog($username, $section){
     }
 
     if ($section != "") {
-        $sql .= " AND infoid Like :infoid";
-        $binds['info'] = '%'.$infoid.'%';
+        $sql .= " AND section Like :section";
+        $binds['section'] = '%'.$section.'%';
     }
 
     $results = array();

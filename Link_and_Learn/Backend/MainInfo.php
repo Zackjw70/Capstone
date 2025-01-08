@@ -33,28 +33,6 @@
 </head>
 <?php
 $error = "";
-
-    
-    
-
-    /*if(isset($_POST['uploadImg'])){
-        if(isset($_FILES['mainImg'])){
-            var_dump($temp_name = $_FILES['mainImg']['tmp_name']);
-            $temp_name = $_FILES['mainImg']['tmp_name'];
-
-            $path = getcwd() . DIRECTORY_SEPARATOR . '../images';
-            $new_name = $path . DIRECTORY_SEPARATOR . $_FILES['mainImg']['name'];
-
-            move_uploaded_file($temp_name, $new_name);
-
-            $imgUrl = str_replace(['C:\xampp\htdocs\Capstone\Link_and_Learn\Backend../'],'',$new_name);
-            $now = new DateTime();
-            $now = $now->format('Y-m-d');
-            $picture = $imgUrl;
-            editmain($title, $picture, $ownername, $phone, $email);
-
-        }
-    }*/
     $info = getmain();
 
     if(isset($_POST['submit_changes'])){
@@ -69,9 +47,9 @@ $error = "";
 
             
 
-            $imgUrl = str_replace(['C:\xampp\htdocs\Capstone\Capstone\Link_and_Learn\Backend\../'],'',$new_name);
+            $imgUrl = str_replace(['C:\xampp\htdocs\Capstone\Link_and_Learn\Backend\../'],'',$new_name);
             $picture = $imgUrl;
-            if ($picture = "images\\"){
+            if ($picture == "images\\"){
                 $picture = $info["picture"];
             }
 
@@ -87,7 +65,6 @@ $error = "";
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error .= "<li>Invalid email format ex: test@gmail.com</li>";
         }
-
 
         if($error == ""){
             editmain($title, $picture, $ownername, $phone, $email);

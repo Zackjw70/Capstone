@@ -13,131 +13,16 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Stylesheets/style.css" type="text/css">
     <script src="https://cdn.tiny.cloud/1/vq1rq2p69wax28njpht11pigfyry07aksn56iwrrgnkrhe3x/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="../Stylesheets/style.css" type="text/css">
     <title>User Edit</title>
   <style>
-        body{
-            background-color:#EAD064;
-        }
-        h1{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            height: 50px;
-            color:#B93836;
-            font-size:60px;
-            margin-left:auto;margin-right:auto;
-            margin-top:50px;
-            
-        }
-        .footextra{
-            background-color:#EABC64;
-            position: relative;
-            bottom: 0;
-            width: 100.5%;
-            padding-top:10px;
-            font-size: 20px;
-            font-family: "Inter", sans-serif;
-            font-weight: 400;
-
-        }
-        .loginbtn{
-            margin-top:80px;
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-            margin-right: 50%;
-
-        }
-        .logoutbtn{
-            width: 200px;
-            height: 60px;
-            font-size:26px;
-        }
-        .username{
-            margin-top:20px;
-            max-height: 30px;
-            font-size:26px;
-            margin-right: 50%;
-            width:100%;
-            overflow: hidden;
-            
-        }
-        .headerrow{
-            background-color:#EABC64;
-            width:100.5%;
-            overflow: hidden;
-        }
-        .logobtn{
-            opacity: 50%;
-        }
-        @media only screen and (max-width: 1000px) {
-            h1{
-                margin-left: 200px;
-                font-size:45px;   
-            }
-            .logbtns{
-                display:block;
-                width: 100%;
-                height: 150px;
-            }
-            .username{
-                display:block;
-                margin-bottom:30px;
-                width: 100%;
-            }
-        
-        }
-        h2{
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            color:#B93836;
-            font-size:50px;
-            margin-top:50px;
-        }
-        .row{
-            max-width: 100.5%;
-        }
-        textarea{
-            padding-top:30px;
-            padding-bottom:30px;
-        }
-        .hiddenitems{
-            display: none;
-        }
-        .spacing{
-            margin-bottom: 20px;
-        }
-        .d-flex{
-            margin-bottom: 10px;
-        }
-        p{
-            line-height: 1.5;
-            font-family: "Lato";
-            font-size: 20px;
-        }
-        .aButtons{
-            text-decoration:none;
-            color:#B93836;
-            font-family: "Architects Daughter", cursive;
-            font-weight: 400;
-            font-style: normal;
-            font-size:30px;
-        }
-        .aButtons:hover{
-            color:black;
-        }
-        label {
-        display: inline-block;
-        width: 100px;
-        
-        }
-
+    .row{
+        width:100%;
+    }
     </style>
 </head>
-<body>
+<body class="everyThang">
     <?php
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);

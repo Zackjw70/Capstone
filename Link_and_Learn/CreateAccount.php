@@ -34,7 +34,7 @@ if (isset($_POST['login'])){
             
         }
         elseif($errorcnt == 0){
-            addUsers($username,crypt($password, '$5$'), 0);
+            addUsers($username, $password, 0);
             header("Location: Login.php");
         }
         else{

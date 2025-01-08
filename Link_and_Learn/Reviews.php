@@ -2,6 +2,9 @@
     session_start();
     if (empty($_SESSION['perm'])){
         $_SESSION['perm'] = 0;
+        if(empty($_SESSION['user'])){
+            header("location: home.php");
+        }
     } 
     
 
