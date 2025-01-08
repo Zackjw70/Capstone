@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-6">
                 <p class="bookHere">
-                    <a href="https://calendly.com/andrewrockwell20/test"  target="_blank">Book an Appointment</a>
+                    <a href="https://calendly.com/andrewrockwell20/test"  target="_blank">Book an Appointmen</a>
                 </p>
             </div>
             <div class="col-lg-1">
