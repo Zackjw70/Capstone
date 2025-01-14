@@ -17,7 +17,7 @@
 </head>
 
 <?php
-
+    //set for admin permissions. Will kick the user out to login.php if permissions level isnt met
     session_start();
     if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
         header ('Location: ../Login.php');
@@ -25,7 +25,7 @@
 
     include __DIR__ . '/../DBModel/modelLink.php';
     $users = getUsers();
-
+    //search fumction accessing ModelLink
     if(isset($_POST['searchname'])){
         $username = filter_input(INPUT_POST, 'username');
         $searchuser = searchUsers($username);
@@ -54,7 +54,7 @@
                 <button type="submit" class="custom-btn btn-14" name="showall" >Show All</button>
             </form>
         </div>
-
+        <!--perm levels: 2 = admin, 1 = owner, 0 = user-->
         <h3>Admins</h3>
         <div class="d-flex justify-content-center">
             <table class="table table-striped table-warning " style="width: auto;">
@@ -84,7 +84,9 @@
                     <?php 
                     }
                 endforeach;
-            } else{
+            } 
+            //else is just for initial load of page
+            else{
                 foreach ($users as $u):
                     if ($u['perm'] == '2'){ ?>
                         <tr>
@@ -100,7 +102,7 @@
         </table>
         </div>
         
-
+        <!-- Owner and Users section are the exact same just with different permission check-->
         <h3>Owners</h3>
         <div class="d-flex justify-content-center">
         <table class="table table-striped table-warning" style="width: auto;">

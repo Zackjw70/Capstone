@@ -25,8 +25,10 @@
 
     include __DIR__ . '/../DBModel/modelLink.php';
 
+    //get function in ModelLink
     $getchange = getChangeLog();
 
+    //search function in ModelLink
     if(isset($_POST['search'])){
         $username = filter_input(INPUT_POST, 'username');
         $section = filter_input(INPUT_POST, 'section');
@@ -97,7 +99,10 @@
                                 <?php endif;?>
                     </tr>
                     <?php endforeach;
-                } else{
+                }
+                //else is only for initial page loadup 
+                else
+                {
                     foreach($getchange as $g):?>
                     <tr>
                         <td><?= $g['section']?></td>

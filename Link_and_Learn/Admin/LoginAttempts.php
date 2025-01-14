@@ -27,10 +27,11 @@
         header ('Location: ../Login.php');
     }
 
+    //get function in ModelLink
     $logattempt = getLoginAttempts();
 
 
-
+    //search function in ModelLink
     if(isset($_POST['searchname'])){
         $username = filter_input(INPUT_POST, 'username');
         $searchlog = searchLoginAttempts($username);
@@ -103,7 +104,10 @@
                                 <?php endif;?>
                             </tr>
                         <?php endforeach; 
-                    }else{
+                    }
+                    //this else is only for initial loadup of page
+                    else
+                    {
                         foreach ($logattempt as $a):?>
                             <tr>
                                 <td><?= $a['AttemptTime']?></td>

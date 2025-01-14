@@ -29,6 +29,8 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
         error_reporting(E_ALL);
         include __DIR__ . '/../DBModel/modelLink.php';
         
+        //error, changepass and buttonchannge are for html settings and info, rest are for the ModelLink page
+        //inputname will access the correct section in ModelLink
         $error = "";
         $changepass = "hidden";
         $buttonchange = "button";
@@ -87,6 +89,8 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
                 
             }
         }
+
+        //sections for accessing AddUser, UpdateUser, DeleteUser
 
         if(isset($_POST['Update_User'])){
             $username = filter_input(INPUT_POST, 'username');
@@ -151,11 +155,13 @@ if(!isset($_SESSION['user']) && $_SESSION['perm'] < 2){
                 </div>
                 <div class="spacing">
                 <label>Password: </label>
+                <!--security to hide passworrds so admins can't see sensitive info-->
                 <input id="passchangebutton" type="button" value="ChangePassword" onclick="inputchange()">
 
                 <input id="passchangetext" type="hidden" name="logpassword" onclick="inputchange()" value="" />
                 <br>
                 </div>
+                <!--dropdown menu -->
                 <div class="spacing">
                 <label>Role: </label>
                 <select id="perm" name="perm">
