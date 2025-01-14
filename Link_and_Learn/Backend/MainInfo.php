@@ -55,6 +55,7 @@ $error = "";
 
             
         }
+        //This is where all the updated information updated in the form below gets added
 
         $ownername = filter_input(INPUT_POST, 'ownername');
         $phone = filter_input(INPUT_POST, 'phonenumber');

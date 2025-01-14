@@ -7,6 +7,7 @@
     if($perm < 1){
         header('Location: ../home.php');
     }
+    //Allows for the user to select which reviews are view able and hidden
     if (isset($_POST['delete'])){
         $id = filter_input(INPUT_POST, 'reviewid');
         reviewDelete($id);

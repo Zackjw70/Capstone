@@ -3,18 +3,20 @@
 
     include __DIR__ . '/../DBModel/modelLink.php';
 
+    //Checks user permissions
     $perm = $_SESSION['perm'];
     if($perm < 1){
         header('Location: ../home.php');
     }
 
+    //This is used if a user deletes a section -> sends to modelLink
     if (isset($_POST['delete'])){
         $id = filter_input(INPUT_POST, 'textid');
         $section = 
         contentDelete($id);
     }
 
-
+    //This is called if the admin adds a new announcment section
     if(isset($_POST['newAnnoHidden'])){
         $newAnno = filter_input(INPUT_POST, "newAnnoHidden");
         $now = new DateTime();
@@ -26,7 +28,7 @@
             }
         }
 
-        
+    //This is called if the user adds to the about section
     }
     if(isset($_POST['newAboutHidden'])){
         $newAbout = filter_input(INPUT_POST, "newAboutHidden");
@@ -39,6 +41,8 @@
             }
         }
     }
+    //This is when the user adds a new image at the base of the page
+    //The image is added into the contentImages folder
     if(isset($_POST['uploadImg'])){
         if(isset($_FILES['mainImg'])){
             $temp_name = $_FILES['mainImg']['tmp_name'];
@@ -58,6 +62,7 @@
             
         }
     }
+    //This is called when the image in the about section is updated
     if(isset($_POST['uploadBaseImg'])){
         if(isset($_FILES['imgBase'])){
             $temp_name = $_FILES['imgBase']['tmp_name'];
@@ -77,6 +82,7 @@
             
         }
     }
+    //this allows the user to delete images at the foot of the page
     if(isset($_POST['delBaseImg'])){
         $id = filter_input(INPUT_POST, 'baseImg');
         contentDelete($id);
@@ -145,6 +151,7 @@
             <div class="row xtraSpacing text-center">
                 <div class="col-md-4 offset-md-4"><h3 class="head3">Main Image</h3></div>
             </div>
+            <!-- This is where the main image is added or edited -->
             <div class="row text-center">
                 <div class="col-md-4 offset-md-4">
                 <img src="../<?= $img['contentText']; ?>" style="height:150px; width:150px;">
@@ -175,7 +182,7 @@
                 <div class="col-md-6 text-center hiddenitems">
                     <textarea id="annoTextArea" name="annoTextArea" placeholder="Leave Announcement Here!">
                         
-                    </textarea>
+                    </textarea><!--This textarea is the space where the tinyMCE will apear when opened-->
                     <form method="post" id="annoSubmitNew">
                     <input type="hidden" id="newAnnoHidden" name="newAnnoHidden">
                     <button class="custom-btn btn-14" id="annoSubmitBtn" style="display:none;" nane="annoNewSub">
@@ -188,7 +195,7 @@
             </div>
             <?php foreach ($anno as $a):?>
             <div class="row text-left xtraSpacing">
-            
+            <!-- This sections allows for the user to view and edit sections -->
                 <form method="POST" style="display:flex;">
                     <div class="col-md-2">
 
@@ -234,7 +241,7 @@
                 <div class="col-md-6 text-center hiddenitems2">
                     <textarea id="aboutTextArea" name="aboutTextArea" placeholder="Leave About Terri Content Here!">
                         
-                    </textarea>
+                    </textarea><!--This textarea is the space where the tinyMCE will apear when opened-->
                     <form method="post" id="aboutSubmitNew">
                     <input type="hidden" id="newAboutHidden" name="newAboutHidden">
                     <button class="custom-btn btn-14" id="aboutSubmitBtn" style="display:none;" nane="aboutNewSub">
@@ -247,6 +254,7 @@
             </div>
             <?php foreach ($desc as $d) :?>
             <div class="row text-left xtraSpacing">
+            <!-- Form allowing the user to update specific sections of content-->
                 <form method="POST" style="display:flex;">
                     <div class="col-md-2">
 
@@ -273,6 +281,7 @@
             
         </div>
         <div class="row ">
+            <!-- Add images that appear on the front -->
             <div class="col-md-8 offset-md-2">
                 <form method="post" id="imageBottom" name="imgBottomUpload"  enctype="multipart/form-data">
                     <div>
@@ -287,6 +296,7 @@
         </div>
         <div class="row " style="margin-bottom:50px;"style="display:inline">
             <div class="col-md-8 offset-md-2">
+            <!-- These output all of the images that are added to the database-->
                     <?php foreach($footImg as $f):?>
             
                     <img src="../contentImages/<?= $f['contentText']; ?>" style="height:150px;">
@@ -301,6 +311,8 @@
         </div>
                
         <script>
+            //This is all of the TinyMCE Event handlers
+            //These are called with JS then it gets sent up to PHP
             var annoNew = document.querySelector(`#annoAddNewButton`).addEventListener(`click`,(e) =>{
                 var annoMCE = document.querySelector(`.hiddenitems`).style.display = "inline"
                 var annoSubmitNew = document.querySelector(`#annoSubmitBtn`).style.display = "inline"
