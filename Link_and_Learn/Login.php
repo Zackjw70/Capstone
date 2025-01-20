@@ -2,6 +2,9 @@
 include __DIR__ . '/DBModel/modelLink.php';
 $info = getmain();
 $picture = $info["picture"];
+//This is the login page
+//It allows users to attempt to login or create an account
+//it is built with error counters so we could add more security
 
 $results = '';
 $error = "";

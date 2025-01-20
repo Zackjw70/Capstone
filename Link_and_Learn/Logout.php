@@ -1,5 +1,5 @@
 <?php 
-
+//Yes
 session_start();
         include __DIR__ . '/model/modelGames.php';
 
