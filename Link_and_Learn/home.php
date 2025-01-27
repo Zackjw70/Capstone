@@ -6,6 +6,8 @@
 
     include __DIR__ . '/DBModel/modelLink.php';
     $count = 0;
+
+    //reviews section
     $allReviews = getShown3();
     
     //This is the landing page
@@ -141,7 +143,7 @@
         <a href="home.php"><button class="custom-btn btn-14 wideButton" style="margin-bottom:80px;">Return to Top</button></a>
         </div>
 
-
+        <!--footer include all front sections-->
         <footer class="row footextra m-0">
         <?php include 'includes/footer.php';?>
         </footer>

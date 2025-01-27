@@ -11,6 +11,8 @@ $error = "";
 
 if (isset($_POST['login'])){
     
+    //error messages, error count there for denying login
+    //empty type of search function in ModelLink
     $errorcnt = 0;
     if(empty($username = filter_input(INPUT_POST, "uName"))){
         $errorcnt += 1;
@@ -27,7 +29,7 @@ if (isset($_POST['login'])){
             session_start();
             $_SESSION['user']=$user['username'];
             $_SESSION['perm']=$user['perm'];
-
+            //redirects based on permissions
             if($_SESSION['perm'] == 2){
                 header('location: Admin/User.php');
             }
