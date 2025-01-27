@@ -7,6 +7,7 @@
     if($perm < 1){
         header('Location: ../home.php');
     }
+    //Allows for the user to select which reviews are view able and hidden
     if (isset($_POST['delete'])){
         $id = filter_input(INPUT_POST, 'reviewid');
         reviewDelete($id);
@@ -60,7 +61,7 @@
             <div class="col-md-4 offset-md-4">
                 <a href="../Reviews.php"><Button class="custom-btn btn-14">View Front</Button></a>
             </div>
-        </div>
+        </div><!-- Body section allows for the admin/owner of site to view all of the reviews submitted and edit specific parts before being able to select if it is viewable on the home page-->
             <?php foreach ($reviews as $r): ?>
         <div class="xtraSpacing">
             <div class="row">

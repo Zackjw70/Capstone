@@ -6,6 +6,9 @@
             header("location: home.php");
         }
     } 
+    //Reviews page
+    //Pulls all of the reviews from the database that are displayed from the backend
+    //Also allows users to submit they're own reviews that are not displayed immeditetly 
     
 
     include __DIR__ . '/DBModel/modelLink.php';
@@ -133,7 +136,7 @@
             <form method="POST" id="ReviewMCE" name="uploadForm" enctype="multipart/form-data" >
                 <input type="file" name="reviewImg">
             <div class="col-4 text-center" style="padding-top:30px;padding-bottom:30px; margin-left:auto;margin-right:auto;">
-                <input type="checkbox" name="check1" id="check1">
+                <input type="checkbox" name="check1" id="check1"><!--Legal stuff-->
                 <label for="check1">I acknowledge that the image used contains only my child </label><br>
                 <input type="checkbox" name="check2" id="check2">
                 <label for="check2">I allow the use of this photo and review to be posted online </label>
@@ -210,7 +213,7 @@
 
     </div>
     
-    <script>
+    <script>//This is the TinyMCE Display and checker
         var booten = document.querySelector(`#Reviewbtn`).addEventListener(`click`,(e) =>{
             var hidden = document.querySelector(`#hiddensub`).style.display = "block"
             var hiddenarea = document.querySelector(`#hiddenarea`).style.display = "inline"

@@ -10,8 +10,8 @@
     //reviews section
     $allReviews = getShown3();
     
-    //getContent represents each section
-    
+    //This is the landing page
+    //All of the info is selected out by its section numbers 1-4 and displayed appropriately on the page
     if (!empty($desc = getContent(2))){
 
     }
@@ -64,7 +64,7 @@
                 <?php endif ;?>
             </div>
             <div class="col-md-6">
-                <p class="bookHere">
+                <p class="bookHere"><!--This is the announcment bar which shows a link to calendly ... not up to date-->
                     <a href="https://calendly.com/andrewrockwell20/test"  target="_blank">Book an Appointment</a>
                 </p>
             </div>

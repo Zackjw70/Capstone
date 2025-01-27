@@ -82,6 +82,7 @@
                 
         </div>
         <script>
+            //JS to use the tinyMCE editor
             var subButton = document.querySelector(`#editContent`).addEventListener(`click`, (e) =>{
                 e.preventDefault()
                 form = document.querySelector(`#updateForm`)

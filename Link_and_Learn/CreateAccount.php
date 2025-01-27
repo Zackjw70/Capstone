@@ -2,7 +2,8 @@
 include __DIR__ . '/DBModel/modelLink.php';
 $info = getmain();
 $picture = $info["picture"];
-
+//This section checks the submitted form before adding the user to the data base
+//It checks to make sure all important info is included
 $results = '';
 $uNameError = '';
 $uPassError = '';
