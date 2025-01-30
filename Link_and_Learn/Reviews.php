@@ -2,9 +2,9 @@
     session_start();
     if (empty($_SESSION['perm'])){
         $_SESSION['perm'] = 0;
-        if(empty($_SESSION['user'])){
-            header("location: home.php");
-        }
+        // if(empty($_SESSION['user'])){
+        //     header("location: home.php");
+        // }
     } 
     //Reviews page
     //Pulls all of the reviews from the database that are displayed from the backend
@@ -90,6 +90,16 @@
                     <h2 class="head2">Reviews</h2>
                 </div>
         </div>
+        <?php if(empty($_SESSION['user'])): ?>
+        <div class="row text-center" style="padding-top: 30px; padding-bottom:30px;">
+            <div class="col-4">
+                      
+            </div>
+            <div class="col-md-4 text-center">
+                <h2>Sign in to leave review</h2>
+            </div>
+        </div>
+        <?php else: ?>
         <div class="row text-center" style="padding-top: 30px; padding-bottom:30px;">
             <div class="col-4">
                       
@@ -100,6 +110,7 @@
                 </button>
             </div>
         </div>
+        <?php endif; ?>
         <div class="row" >
             <div class="col-2">
                       
