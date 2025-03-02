@@ -225,6 +225,17 @@
     </div>
     
     <script>//This is the TinyMCE Display and checker
+
+
+        function santitize(textInput){
+            var element = document.createElement('div');
+            element.innerText = textInput;
+            let sanitized = element.innerHTML;
+            sanitized = sanitized.replace(/<\/?p>/g, '');
+
+            return sanitized;
+        }
+
         var booten = document.querySelector(`#Reviewbtn`).addEventListener(`click`,(e) =>{
             var hidden = document.querySelector(`#hiddensub`).style.display = "block"
             var hiddenarea = document.querySelector(`#hiddenarea`).style.display = "inline"
@@ -243,6 +254,7 @@
                     var text = tinymce.activeEditor.getContent()
                     if (text != "<p></p>" && text != ""){
                         console.log(text)
+                        text = santitize(text);
                         inpi = document.querySelector(`#TinyMceTxt`)
                         inpi.value = text
                         form = document.querySelector(`#ReviewMCE`)

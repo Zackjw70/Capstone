@@ -73,7 +73,7 @@
                 <tbody>
 
                     <?php if(isset($_POST['searchname'])){
-                            foreach ($searchlog as $l):?>
+                            foreach ($searchlog as $l ):?>
                             <tr>
                                 <td><?= $l['AttemptTime']?></td>
                                 <td><?= $l['username']?></td>

@@ -125,7 +125,7 @@ function DeleteUser($user){
 function getChangeLog(){
     global $db;
     $results = [];
-    $sqlstring = $db ->prepare("SELECT changeid, section, changetime, username, successful FROM changelog ORDER BY changetime desc");
+    $sqlstring = $db ->prepare("SELECT changeid, section, changetime, username, successful FROM changelog ORDER BY changetime desc LIMIT 25");
     if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
         $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
     }
@@ -276,7 +276,7 @@ function addReview($text, $time, $img){
 function getLoginAttempts(){
     global $db;
     $results = [];
-    $sqlstring = $db ->prepare("SELECT Attemptid, username, Attemptedpassword, successful, AttemptTime FROM loginattempts ORDER BY AttemptTime desc");
+    $sqlstring = $db ->prepare("SELECT Attemptid, username, Attemptedpassword, successful, AttemptTime FROM loginattempts ORDER BY AttemptTime desc LIMIT 25" );
     if ($sqlstring -> execute() && $sqlstring ->rowCount() > 0){
         $results = $sqlstring -> fetchALL(PDO::FETCH_ASSOC);
     }

@@ -79,11 +79,20 @@
 
     </div>     
     <script>
+        function santitize(textInput){
+            var element = document.createElement('div');
+            element.innerText = textInput;
+            let sanitized = element.innerHTML;
+            sanitized = sanitized.replace(/<\/?p>/g, '');
+
+            return sanitized;
+        }
+
         var subButton = document.querySelector(`#editContent`).addEventListener(`click`, (e) =>{
             e.preventDefault()
             form = document.querySelector(`#updateForm`)
             var content = tinymce.activeEditor.getContent(`#updatedContent`)
-            replacedTextHidden = document.querySelector(`#replacedText`).value = content
+            replacedTextHidden = document.querySelector(`#replacedText`).value = santitize(content)
             form.submit('updateForm')
 
         })
